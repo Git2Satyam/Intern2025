@@ -1,0 +1,35 @@
+﻿@model StudentML
+@{
+    <h3>Edit Student</h3>
+}
+
+<form asp-action="EditStudent" method="post">
+    <div>
+        <label asp-for="Name">Name</label>
+        <input asp-for="Name" class="form-control"/> 
+    </div>
+
+    <div>
+        <label asp-for="Class">Class</label>
+        <input asp-for="Class" class="form-control"/>
+    </div>
+
+    <div>
+        <label asp-for="RollNo">RollNo</label>
+        <input asp-for="RollNo" class="form-control" />
+    </div>
+
+     <div>
+        <label asp-for="Email">Email</label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+
+    <div>
+        <label asp-for="Address">Address</label>
+        <input asp-for="Address" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2">Save</button>
+</form>
+
+

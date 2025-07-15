@@ -1,0 +1,45 @@
+﻿@model IEnumerable<StudentApp.Models.StudentModel>
+@{
+    <div class="d-flex justify-content-between mb-2">
+        <h3>STUDENTS</h3>
+        <button class="btn btn-primary">
+            <a asp-controller="Student" asp-action="DisplayForm" style="color: black; text-decoration: none;">Add Student</a>
+        </button>
+    </div>
+    @if (Model != null && Model.Any())
+    {
+        <table class="table table-bordered w-100">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>RollNo</th>
+                    <th>Class</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.RollNo</td>
+                        <td>@item.Class</td>
+                        <td>@item.Email</td>
+                        <td>@item.Address</td>
+                        <td>
+                            <button style="color: black; text-decoration: none">
+                                <a>Edit</a>
+                            </button>
+                            <button style="color: black; text-decoration: none">
+                                <a>Delete</a>
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+}
