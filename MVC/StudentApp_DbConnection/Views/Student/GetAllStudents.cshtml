@@ -29,11 +29,11 @@
                         <td>@item.Email</td>
                         <td>@item.Address</td>
                         <td>
-                            <button style="text-decoration: none">
-                                <a>Edit</a>
+                            <button class="btn btn-primary me-3">
+                                <a asp-action="EditStudent" asp-route-id="@item.Id" style="color: black; text-decoration: none">Edit</a>
                             </button>
-                            <button style="color: black; text-decoration: none">
-                                <a>Delete</a>
+                            <button class="btn btn-danger" >
+                                <a style="color: black; text-decoration: none">Delete</a>
                             </button>
                         </td>
                     </tr>

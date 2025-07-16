@@ -11,5 +11,7 @@ namespace StudentApp.Repository.Interface
     {
         IEnumerable<StudentModel> GetAllStudents();
         bool AddStudent(StudentModel student);
+        StudentModel GetStudent(int id);
+        int UpdateStudentRecord(StudentModel student);
     }
 }

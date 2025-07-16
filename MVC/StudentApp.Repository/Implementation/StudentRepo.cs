@@ -63,5 +63,58 @@ namespace StudentApp.Repository.Implementation
                 throw;
             }
         }
+
+        public StudentModel GetStudent(int id)
+        {
+            var model = new StudentModel();
+            try
+            {
+                var studentExist = _context.StudentRecords.FirstOrDefault(x => x.Id == id);
+                if(studentExist != null)
+                {
+                    model.Id = studentExist.Id;
+                    model.Name = studentExist.Name;
+                    model.Class = studentExist.Class;
+                    model.RollNo = studentExist.RollNo;
+                    model.Email = studentExist.Email;
+                    model.Address = studentExist.Address;
+                }
+                else
+                {
+                    return new StudentModel();
+                }
+                return model;
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public int UpdateStudentRecord(StudentModel student)
+        {
+            int result = 0;
+            try
+            {
+                var exist = _context.StudentRecords.FirstOrDefault(y => y.Id == student.Id);
+                if(exist != null)
+                {
+                    exist.Name = student.Name;
+                    exist.Class = student.Class;
+                    exist.RollNo = student.RollNo;
+                    exist.Email = student.Email;
+                    exist.Address = student.Address;
+
+                    _context.StudentRecords.Update(exist);
+                    _context.SaveChanges();
+                    result = 1;
+                }
+                return result;
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

@@ -51,5 +51,25 @@ namespace StudentApp_DbConnection.Controllers
                 }
             }
         }
+
+        public IActionResult EditStudent(int id)
+        {
+            var data = _studentRepo.GetStudent(id);
+            return View(data);
+        }
+
+        [HttpPost]
+        public IActionResult EditStudent(StudentModel model)
+        {
+            var result = _studentRepo.UpdateStudentRecord(model);
+            if(result == 1)
+            {
+                return RedirectToAction("GetAllStudents");
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
     }
 }
