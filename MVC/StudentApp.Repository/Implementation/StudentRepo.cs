@@ -2,11 +2,6 @@
 using StudentApp.Core.DB_Context;
 using StudentApp.Models;
 using StudentApp.Repository.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StudentApp.Repository.Implementation
 {
@@ -84,6 +79,26 @@ namespace StudentApp.Repository.Implementation
                     return new StudentModel();
                 }
                 return model;
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public bool RemoveStudenet(int id)
+        {
+            bool flag = false;
+            try
+            {
+                var getStudent = _context.StudentRecords.FirstOrDefault(st => st.Id == id);
+                if (getStudent != null)
+                {
+                    getStudent.Deleted = true;
+                    _context.SaveChanges();
+                    flag = true;
+                }
+                return flag;
             }
             catch(Exception ex)
             {

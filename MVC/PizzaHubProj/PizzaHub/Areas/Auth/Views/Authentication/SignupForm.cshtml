@@ -1,0 +1,59 @@
+﻿@using PizzaHub.Models
+@model SignupFormModel
+
+<!-- Modal -->
+<div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="top: 100px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="signupModalLabel">SignUp</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label asp-for="FirstName">FirstName</label>
+                        <input type="text" placeholder="Enter first name" asp-for="FirstName" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="LastName">LastName</label>
+                        <input type="text" placeholder="Enter last name" asp-for="LastName" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Email">Email</label>
+                        <input type="email" placeholder="Enter email" asp-for="Email" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Password">Password</label>
+                        <input type="password" placeholder="Enter Password" asp-for="Password" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="PhoneNumber">PhoneNumber</label>
+                        <input type="number" placeholder="Enter PhoneNumber" asp-for="PhoneNumber" class="form-control" />
+                    </div>
+
+                    @*  <button type="submit" class="btn btn-primary">Login</button> *@
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(function () {
+                const modal = new bootstrap.Modal(document.getElementById('signupModal'));
+                modal.show();
+            }, 200);
+        });
+    </script>
+}

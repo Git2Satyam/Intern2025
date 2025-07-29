@@ -71,5 +71,18 @@ namespace StudentApp_DbConnection.Controllers
                 return NotFound();
             }
         }
+
+        public IActionResult RemoveStudent(int id)
+        {
+            var result = _studentRepo.RemoveStudenet(id);
+            if (result)
+            {
+                return RedirectToAction("GetAllStudents");
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
     }
 }

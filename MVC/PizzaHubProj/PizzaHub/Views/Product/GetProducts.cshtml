@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ProductModel>
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_FullLayout";
+}
+
+<div style="background: skyblue; height: 30vh">
+    <div class="pt-4 pb-3 p-lg-3">
+        <div class="row">
+            <div class="col-md-3">
+             <img src="~/Images/Pizza/Pizza_H.jpg" class="img-fluid rounded-3" style="height: 25dvh"/>
+            </div>
+
+            <div class="col-md-4 text-white">
+                <h2 class="text-black">Pizza Hub WebSite</h2>
+                <p class="mt-2 text-black">Reliable pizza delivery at your fingertips</p>
+                <button href="#" class="btn btn-success mt-5">Order Online Now</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if(Model != null && Model.Count() > 0)
+{
+    <div class="row mt-5" style="margin-left: 40px">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3 mb-4">
+                <div class="card me-3" style="width: 23rem;">
+                    <img src="@Url.Content(item.ImageUrl)" class="card-img-top" alt="..." style="padding: 3px; height: 210px; width: 367px">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.ProductName</h5>
+                        <small class="text-success">In Stock</small>
+                        <span>@item.Quantity</span>
+                        <p class="card-text">@item.ProductDescription</p>
+                        <h5>@item.UnitPrice</h5>
+                        <a href="#" class="btn btn-primary">Add To Cart</a>
+                        <a href="#" class="btn btn-warning float-end">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+
+

@@ -13,5 +13,6 @@ namespace StudentApp.Repository.Interface
         bool AddStudent(StudentModel student);
         StudentModel GetStudent(int id);
         int UpdateStudentRecord(StudentModel student);
+        bool RemoveStudenet(int id);    
     }
 }
