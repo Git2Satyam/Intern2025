@@ -1,18 +1,27 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FoodApp.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FoodApp.UI.Areas.Auth.Controllers
 {
+    [Area("Auth")]
     public class AuthenticationController : Controller
     {
-        [Area("Auth")]
         public IActionResult LoginForm()
         {
             return View();
         }
 
-        public IActionResult SignupForm()
+        [HttpPost]
+        public IActionResult VerifyUser(LoginFormModel model)
         {
-            return View(); 
+            return View();
         }
+
+        [HttpGet]
+        public IActionResult Signup()
+        {
+            return View();
+        }
+
     }
 }

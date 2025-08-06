@@ -20,6 +20,8 @@
             color: lightgray
         }
 
+   
+
 </style>
 <body>
     <header>
@@ -47,32 +49,27 @@
                     </a>
 
                     <ul class="dropdown-menu">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <i class="bi bi-door-closed-fill"></i>
-                            </div>
-                        <li><a class="dropdown-item" href="#">Logout</a></li>
-                        </div>
-
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <i class="bi bi-door-open-fill"></i>
-                            </div>
-                    <li><a class="dropdown-item" asp-action="LoginForm" asp-controller="Authentication" asp-area="Auth" data-toggle="modal" data-target="#loginModal">Login</a></li>
-                       </div>
-
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <i class="bi bi-gear-fill"></i>
-                            </div>
-                        <li><a class="dropdown-item" href="#">Signup</a></li>
-                      </div>
-
+                        <li>
+                            <a class="dropdown-item bg-white" href="#">
+                                <i class="bi bi-door-closed-fill me-2"></i> Logout
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item bg-white" asp-action="LoginForm" asp-controller="Authentication" asp-area="Auth" data-toggle="modal" data-target="#loginModal">
+                                <i class="bi bi-door-open-fill me-2"></i> Login
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item bg-white" href="#">
+                                <i class="bi bi-gear-fill me-2"></i> Signup
+                            </a>
+                        </li>
                     </ul>
+
                 </div>
             </div>
 
-            <a class="text-decoration-none text-black me-1 font">
+            <a class="text-decoration-none text-black me-3 font">
                 <i class="bi bi-cart-plus-fill"></i>
             </a>
         </nav>
