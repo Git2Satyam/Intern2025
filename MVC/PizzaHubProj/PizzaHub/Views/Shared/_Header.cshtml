@@ -1,4 +1,18 @@
-﻿
+﻿<style>
+    .dropdown-menu[data-bs-popper]{
+        right: 0;
+        left: auto
+    }
+
+    .dropdown-menu li{
+        border-bottom: 1px solid;
+        color: lightgray
+    }
+
+    .dropdown-menu li:last-child {
+       border-bottom: none
+    }
+</style>
 <header>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
         <div class="container-fluid">
@@ -24,9 +38,9 @@
                     </li>
                 </ul>
 
-                <a title="logout">
+               @*  <a title="logout">
                     <i class="bi bi-box-arrow-right" style="font-size: 30px; margin-right: 20px"></i>
-                </a>
+                </a> *@
                 <div class="dropdown">
                     <a class="btn" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
                        style="outline: none; box-shadow: none;">
@@ -34,12 +48,13 @@
                     </a>
 
                     <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Logout</a></li>
                         <li><a class="dropdown-item" asp-area="Auth" asp-controller="Authentication" asp-action="Index">Login</a></li>
                         @* <li><a class="dropdown-item" href="#">Logout</a></li> *@
                         <li><a class="dropdown-item" href="#">Signup</a></li>
                     </ul>
                 </div>
-                <a title="cart">
+                <a title="cart" asp-action="DisplayCartItems" asp-controller="Cart">
                    <i class="bi bi-cart-plus-fill" style="font-size: 30px; margin-right: 20px"></i>
                 </a>
             </div>

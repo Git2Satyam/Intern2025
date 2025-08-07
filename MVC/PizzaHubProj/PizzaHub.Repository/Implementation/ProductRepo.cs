@@ -1,5 +1,5 @@
-﻿using EcommApp.Models;
-using PizzaHub.Core.DB_Context;
+﻿using PizzaHub.Core.DB_Context;
+using PizzaHub.Models;
 using PizzaHub.Repository.Interface;
 using System;
 using System.Collections.Generic;
@@ -22,6 +22,7 @@ namespace PizzaHub.Repository.Implementation
             {
                 var products = _context.Products.Where(x => x.Enabled == true).Select(pd => new ProductModel
                 {
+                    Id = pd.Id, 
                     ProductName = pd.ProductName,
                     ProductDescription = pd.ProdcutDescription,
                     UnitPrice = pd.UnitPrice,

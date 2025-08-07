@@ -1,14 +1,17 @@
-﻿@model IEnumerable<ProductModel>
+﻿@using PizzaHub.Models
+@model IEnumerable<ProductModel>
 @{
     ViewData["Title"] = "Home Page";
     Layout = "_FullLayout";
+    List<string> imagesUrl = ViewBag.Images;
 }
+
 
 <div style="background: skyblue; height: 30vh">
     <div class="pt-4 pb-3 p-lg-3">
         <div class="row">
             <div class="col-md-3">
-             <img src="~/Images/Pizza/Pizza_H.jpg" class="img-fluid rounded-3" style="height: 25dvh"/>
+                <img src="~/Images/Pizza/Pizza_H.jpg" class="img-fluid rounded-3" style="height: 25dvh" />
             </div>
 
             <div class="col-md-4 text-white">
@@ -16,11 +19,38 @@
                 <p class="mt-2 text-black">Reliable pizza delivery at your fingertips</p>
                 <button href="#" class="btn btn-success mt-5">Order Online Now</button>
             </div>
+            <div class="col-md-5">
+                <div id="carouselExampleIndicators" class="carousel slide">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        @for (int i = 0; i < imagesUrl.Count; i++)
+                        {
+                            <div class="carousel-item active">
+                                <img src="@Url.Content(imagesUrl[i])" class="d-block w-100" alt="..." style="height: 26dvh; width: 400px">
+                            </div>
+                        }
+                    </div>
+
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
-@if(Model != null && Model.Count() > 0)
+@if (Model != null && Model.Count() > 0)
 {
     <div class="row mt-5" style="margin-left: 40px">
         @foreach (var item in Model)
@@ -34,7 +64,7 @@
                         <span>@item.Quantity</span>
                         <p class="card-text">@item.ProductDescription</p>
                         <h5>@item.UnitPrice</h5>
-                        <a href="#" class="btn btn-primary">Add To Cart</a>
+                        <a asp-action="AddItemToCart" asp-controller="Cart" asp-route-productId ="@item.Id" class="btn btn-primary">Add To Cart</a>
                         <a href="#" class="btn btn-warning float-end">Buy Now</a>
                     </div>
                 </div>
@@ -42,6 +72,11 @@
         }
     </div>
 }
+@if (TempData.Keys.Count > 0)
+{
+    <partial name="_Notification" />
+}
+
 
 
 

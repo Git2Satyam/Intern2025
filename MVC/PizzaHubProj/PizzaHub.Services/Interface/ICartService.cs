@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace PizzaHub.Services.Interface
 {
-    public interface IProductService
+    public interface ICartService
     {
-        IEnumerable<ProductModel> GetProducts();
+        public bool AddItemToCart(Guid cartId, int productId);
+
+        IEnumerable<CartItemModel> GetCartItems();
+
     }
 }

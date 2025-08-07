@@ -1,5 +1,5 @@
-﻿using EcommApp.Models;
-using Microsoft.EntityFrameworkCore.Query.Internal;
+﻿using Microsoft.EntityFrameworkCore.Query.Internal;
+using PizzaHub.Models;
 using PizzaHub.Repository.Interface;
 using PizzaHub.Services.Interface;
 using System;
