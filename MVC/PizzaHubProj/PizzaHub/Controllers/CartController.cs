@@ -12,6 +12,8 @@ namespace PizzaHub.Controllers
         }
         public IActionResult AddItemToCart(int productId)
         {
+            var cookieExist = GetCookie();
+            if (cookieExist == null) return RedirectToAction("Index", "Authentication", new { area = "Auth" });
             Guid cartId = Cart;
             var result = _cartService.AddItemToCart(cartId, productId);
             if (result)
@@ -23,8 +25,8 @@ namespace PizzaHub.Controllers
                 TempData["error"] = "something went wrong!";
 
             }
-            //return RedirectToAction("GetProducts", "Product");
-            return RedirectToAction("DisplayCartItems");
+            return RedirectToAction("GetProducts", "Product");
+            //return RedirectToAction("DisplayCartItems");
         }
 
         Guid Cart
@@ -53,6 +55,13 @@ namespace PizzaHub.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        private string GetCookie()
+        {
+            var cookie = HttpContext.Request.Cookies[".AspNetCore.Antiforgery.f3SHv7TEmuo"];
+            if (cookie != null) return cookie.ToString();
+            else return null;
         }
     }
 

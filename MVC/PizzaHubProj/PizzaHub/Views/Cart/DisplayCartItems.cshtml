@@ -1,5 +1,5 @@
 ﻿@using PizzaHub.Models
-@model IEnumerable<ProductModel>
+@model List<CartItemModel>
 @{
     Layout = "_FullLayout";
 }
@@ -8,22 +8,36 @@
     <div class="card-body">
         @if(Model.Count() > 0)
         {
-            foreach(var product in Model)
+            @foreach(var item in Model)
             {
-                <div class="row">
-                    <div>
-                        <img src="@Url.Content(product.ImageUrl)" alt="no image" />
-                    </div>
-                    <div>
-                        <div>
-                            @product.ProductName
-                        </div>
+                @if(item.Products.Count > 0)
+                {
+                    @foreach (var product in item.Products)
+                    {
+                        <div class="row mt-5 border-bottom">
+                            <div class="col-md-2 col-lg-2">
+                                <img src="@Url.Content(product.ImageUrl)" alt="no image" class="img-fluid"/>
+                            </div>
+                            <div class="col-md-8 col-lg-8">
+                                <div>
+                                    <strong>@product.ProductName</strong>
+                                </div>
 
-                        <div>
-                            @product.ProductDescription
+                                <div>
+                                    <strong>@product.ProductDescription</strong>
+                                </div>
+
+                                <div>
+                                    @item.Quantity
+                                </div>
+
+                                <div>
+                                    @item.UnitPrice
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    }
+                }
             }
         }
     </div>

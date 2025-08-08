@@ -1,17 +1,15 @@
-﻿@if (TempData["success"] != null)
+﻿@if (TempData["success"] != null || TempData["error"] != null)
 {
+    <script src="/lib/jquery/dist/jquery.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
-            toastr.success('@TempData["success"]');
-        });
+        @if (TempData["success"] != null)
+        {
+            <text>toastr.success('@Html.Raw(TempData["success"])'); </text>
+        }
+        @if (TempData["error"] != null)
+        {
+            <text>toastr.error('@Html.Raw(TempData["error"])'); </text>
+        }
     </script>
 }
-else if (TempData["error"] != null)
-{
-    <script type="text/javascript">
-        $(document).ready(function () {
-            toastr.error('@TempData["error"]');
-        });
-    </script>
-}
-

@@ -48,7 +48,7 @@ namespace PizzaHub.Repository.Implementation
                     _context.CartItems.Add(item);
                     _context.Carts.Add(addCart);
                     _context.SaveChanges();
-                    // addCart.CartItems.Add(item);
+                    //addCart.CartItems.Add(item);
                     //_context.Carts.Add(addCart);
                     //_context.SaveChanges();
                 }
@@ -76,8 +76,9 @@ namespace PizzaHub.Repository.Implementation
                         ProductName = p.ProductName,
                         ProductDescription = p.ProdcutDescription,
                         Currency = p.Currency,
+                        ImageUrl = p.ImageUrl,  
                     }).ToList()
-                });
+                }).ToList();
                 return productItems;
             }
             catch (Exception)
@@ -90,7 +91,7 @@ namespace PizzaHub.Repository.Implementation
         {
             try
             {
-                var cartExist = _context.Carts.FirstOrDefault(c => c.Id == cartId);
+                var cartExist = _context.Carts.Include(c => c.CartItems).FirstOrDefault(c => c.Id == cartId);
                 return cartExist;
             }
             catch(Exception)

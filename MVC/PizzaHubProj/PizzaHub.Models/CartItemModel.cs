@@ -13,6 +13,6 @@ namespace PizzaHub.Models
         public bool? IsActive { get; set; }
         public int? Quantity { get; set; }
         public decimal? UnitPrice { get; set; }
-        public IEnumerable<ProductModel> Products { get; set; }
+        public virtual List<ProductModel> Products { get; set; }
     }
 }
