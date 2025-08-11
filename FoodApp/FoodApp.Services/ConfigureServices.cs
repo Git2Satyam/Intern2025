@@ -1,4 +1,5 @@
 ﻿using FoodApp.Core.DB_Context;
+using FoodApp.Core.Entities;
 using FoodApp.Repository.Implementation;
 using FoodApp.Repository.Interface;
 using FoodApp.Services.Implementation;
@@ -24,6 +25,13 @@ namespace FoodApp.Services
             });
 
             _services.AddScoped<DbContext, FoodAppContext>();
+
+            // Entities
+            _services.AddScoped<IRepository<Product>, Repository<Product>>();
+            _services.AddScoped<IRepository<User>, Repository<User>>();
+            _services.AddScoped<IRepository<Cart>, Repository<Cart>>();
+            _services.AddScoped<IRepository<CartItem>, Repository<CartItem>>();
+
 
             // Repository
 

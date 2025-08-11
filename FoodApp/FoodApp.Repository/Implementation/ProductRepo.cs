@@ -1,4 +1,5 @@
 ﻿using FoodApp.Core.DB_Context;
+using FoodApp.Core.Entities;
 using FoodApp.Models;
 using FoodApp.Repository.Interface;
 using System;
@@ -9,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace FoodApp.Repository.Implementation
 {
-    public class ProductRepo : IProductRepo
+    public class ProductRepo : Repository<Product>, IProductRepo
     {
         private FoodAppContext _context;
-        public ProductRepo(FoodAppContext context)
+        public ProductRepo(FoodAppContext context): base(context)
         {
             _context = context;
         }
