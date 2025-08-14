@@ -1,4 +1,5 @@
 ﻿using PizzaHub.Core.DB_Context;
+using PizzaHub.Core.Entities;
 using PizzaHub.Models;
 using PizzaHub.Repository.Interface;
 using System;
@@ -9,10 +10,11 @@ using System.Threading.Tasks;
 
 namespace PizzaHub.Repository.Implementation
 {
-    public class ProductRepo : IProductRepo
+    public class ProductRepo : Repository<Product>, IProductRepo
     {
         private PizzaHubContext _context;
-        public ProductRepo(PizzaHubContext context)
+     
+        public ProductRepo(PizzaHubContext context): base(context) 
         {
             _context = context;
         }

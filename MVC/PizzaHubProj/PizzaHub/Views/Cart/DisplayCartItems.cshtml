@@ -19,20 +19,25 @@
                                 <img src="@Url.Content(product.ImageUrl)" alt="no image" class="img-fluid"/>
                             </div>
                             <div class="col-md-8 col-lg-8">
-                                <div>
+                                <div class="mb-3">
                                     <strong>@product.ProductName</strong>
                                 </div>
 
-                                <div>
+                                <div class="mb-3">
                                     <strong>@product.ProductDescription</strong>
                                 </div>
 
-                                <div>
-                                    @item.Quantity
+                                <div class="input-group mb-3">
+                                    <button onclick="updateQuantity('@item.Id', '@item.Quantity', -1)" class="btn btn-outline-secondary" type="button">-</button>
+                                    <input type="text" class="form-control" name="quantity" value="@item.Quantity" readonly style="max-width: 50px; text-align: center;">
+                                    <button onclick="updateQuantity('@item.Id', '@item.Quantity', 1)" class="btn btn-outline-secondary" type="button">+</button>
+                                    
                                 </div>
 
                                 <div>
-                                    @item.UnitPrice
+                                    <small>@product.Currency</small>
+                                     @item.UnitPrice
+                                   
                                 </div>
                             </div>
                         </div>

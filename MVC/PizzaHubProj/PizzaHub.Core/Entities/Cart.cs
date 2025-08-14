@@ -8,6 +8,10 @@ namespace PizzaHub.Core.Entities
 {
     public class Cart
     {
+        public Cart()
+        {
+            CartItems = new HashSet<CartItem>();
+        }
         public Guid Id { get; set; }
         public int UserId { get; set; }
         public DateTime? CreatedDate { get; set; }

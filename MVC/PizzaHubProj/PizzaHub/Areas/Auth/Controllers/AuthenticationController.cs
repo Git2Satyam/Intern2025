@@ -32,10 +32,10 @@ namespace PizzaHub.Areas.Auth.Controllers
         {
             try
             {
-                var user = _context.Users.FirstOrDefault(x => x.Email == login.UserName &&  x.Password == login.Password);
-                if(user == null)
+                var user = _context.Users.FirstOrDefault(x => x.Email == login.UserName && x.Password == login.Password);
+                if (user == null)
                 {
-                   
+
                     return RedirectToAction("Index");
                 }
                 else
@@ -48,13 +48,13 @@ namespace PizzaHub.Areas.Auth.Controllers
                         Password = user.Password,
                     };
                     GenerateTicket(userML);
-                    return RedirectToAction("GetProducts", "Product", new {Area=""});
+                    return RedirectToAction("GetProducts", "Product", new { Area = "" });
                 }
-                
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                
+
                 return BadRequest(ex.Message);
             }
         }
@@ -65,14 +65,14 @@ namespace PizzaHub.Areas.Auth.Controllers
             bool success = false;
             try
             {
-                if(!ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
                     return BadRequest(ModelState);
                 }
                 else
                 {
                     var userExist = _context.Users.FirstOrDefault(x => x.Id == model.Id);
-                    if(userExist != null)
+                    if (userExist != null)
                     {
                         userExist.Email = model.Email;
                         userExist.Password = model.Password;
@@ -119,20 +119,39 @@ namespace PizzaHub.Areas.Auth.Controllers
             }
         }
 
-        private void GenerateTicket(UserModel user)
+        private async Task<bool> GenerateTicket(UserModel user)
         {
-            var data = JsonConvert.SerializeObject(user);
-            var claims = new List<Claim> {
-                new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.NameIdentifier, user.FirstName)
-            };
-            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-            HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
-            new AuthenticationProperties
+            try
             {
-                AllowRefresh = true,
-                ExpiresUtc = DateTime.Now.AddMinutes(2),
-            };
+                var claims = new List<Claim> {
+                            new Claim(ClaimTypes.Email, user.Email),
+                            new Claim(ClaimTypes.NameIdentifier, user.FirstName),
+                            new Claim(ClaimTypes.Name, $"{user.FirstName} {user.LastName}")
+                };
+
+                var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                var authProperties = new AuthenticationProperties
+                {
+                    IsPersistent = true,
+                    ExpiresUtc = DateTime.UtcNow.AddMonths(1),
+                    AllowRefresh = true
+                };
+
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity), authProperties);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index");
         }
     }
 }

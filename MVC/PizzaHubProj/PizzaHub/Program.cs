@@ -1,4 +1,5 @@
 using EcommApp.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace EcommApp
 {
@@ -10,6 +11,20 @@ namespace EcommApp
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                     .AddCookie(options =>
+                     {
+                         options.LoginPath = "/Auth/Authentication/Index"; 
+                         options.LogoutPath = "/Auth/Authentication/Logout"; 
+                         options.AccessDeniedPath = "/Auth/Authentication/Index";
+                         options.SlidingExpiration = false; 
+                         options.Cookie.Name = "PizzaHubAuth";
+                         options.Cookie.HttpOnly = true;
+                         options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+                         options.Cookie.SameSite = SameSiteMode.Lax;
+                     });
+
             ConfigureServices.RegisterServices(builder.Services, builder.Configuration);
             var app = builder.Build();
 
@@ -26,6 +41,7 @@ namespace EcommApp
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(

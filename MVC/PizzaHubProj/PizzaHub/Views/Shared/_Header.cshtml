@@ -12,8 +12,13 @@
     .dropdown-menu li:last-child {
        border-bottom: none
     }
+    .fix-header{
+        position: sticky;
+        top: 0;
+        z-index: 100
+    }
 </style>
-<header>
+<header class="fix-header">
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
         <div class="container-fluid">
             <a asp-controller="Product" asp-action="GetProducts" style="text-decoration: none;">
@@ -54,7 +59,7 @@
                         <li><a class="dropdown-item" href="#">Signup</a></li>
                     </ul>
                 </div>
-                <a title="cart" asp-action="DisplayCartItems" asp-controller="Cart">
+                <a title="cart" class="text-black" asp-action="DisplayCartItems" asp-controller="Cart">
                    <i class="bi bi-cart-plus-fill" style="font-size: 30px; margin-right: 20px"></i>
                 </a>
             </div>

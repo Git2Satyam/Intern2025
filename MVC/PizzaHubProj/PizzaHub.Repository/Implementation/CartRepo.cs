@@ -11,10 +11,10 @@ using System.Threading.Tasks;
 
 namespace PizzaHub.Repository.Implementation
 {
-    public class CartRepo : ICartRepo
+    public class CartRepo :Repository<Cart>, ICartRepo
     {
         private PizzaHubContext _context;
-        public CartRepo(PizzaHubContext context)
+        public CartRepo(PizzaHubContext context): base(context) 
         {
             _context = context;
         }
@@ -25,6 +25,7 @@ namespace PizzaHub.Repository.Implementation
             {
                 var cartExist = CartExist(cartId);
                 var product = GetProduct(productId);
+
                 if (cartExist == null)
                 {
                     var addCart = new Cart
@@ -45,12 +46,9 @@ namespace PizzaHub.Repository.Implementation
                         CreatedDate = DateTime.Now
                     };
 
-                    _context.CartItems.Add(item);
+                     addCart.CartItems.Add(item);
                     _context.Carts.Add(addCart);
                     _context.SaveChanges();
-                    //addCart.CartItems.Add(item);
-                    //_context.Carts.Add(addCart);
-                    //_context.SaveChanges();
                 }
                 return true;
             }

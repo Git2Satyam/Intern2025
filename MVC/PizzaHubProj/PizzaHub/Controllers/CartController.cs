@@ -13,7 +13,11 @@ namespace PizzaHub.Controllers
         public IActionResult AddItemToCart(int productId)
         {
             var cookieExist = GetCookie();
-            if (cookieExist == null) return RedirectToAction("Index", "Authentication", new { area = "Auth" });
+            if (cookieExist == null)
+            {
+                TempData["Info"] = "Login First!";
+                return RedirectToAction("Index", "Authentication", new { area = "Auth" });
+            }
             Guid cartId = Cart;
             var result = _cartService.AddItemToCart(cartId, productId);
             if (result)
@@ -23,19 +27,12 @@ namespace PizzaHub.Controllers
             else
             {
                 TempData["error"] = "something went wrong!";
-
             }
             return RedirectToAction("GetProducts", "Product");
             //return RedirectToAction("DisplayCartItems");
         }
 
-        Guid Cart
-        {
-            get
-            {
-               return Guid.NewGuid();
-            }
-        }
+      
 
         public IActionResult DisplayCartItems()
         {
@@ -57,9 +54,29 @@ namespace PizzaHub.Controllers
             }
         }
 
+        public IActionResult UpdateQuantity(int productId, int existQty, int qty)
+        {
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        Guid Cart
+        {
+            get
+            {
+                return Guid.NewGuid();
+            }
+        }
+
         private string GetCookie()
         {
-            var cookie = HttpContext.Request.Cookies[".AspNetCore.Antiforgery.f3SHv7TEmuo"];
+            var cookie = HttpContext.Request.Cookies["PizzaHubAuth"];
             if (cookie != null) return cookie.ToString();
             else return null;
         }
