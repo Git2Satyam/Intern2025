@@ -23,6 +23,7 @@ namespace FoodApp.UI.Areas.Auth.Controllers
         }
 
         [HttpPost]
+        
         public IActionResult VerifyUser(LoginFormModel model)
         {
             var user = new UserModel();
@@ -35,7 +36,7 @@ namespace FoodApp.UI.Areas.Auth.Controllers
                 user.Email = userExist.Email;
 
                 GenerateTicket(user);
-                return RedirectToAction("AdditemToCart", "Cart", new { area = "" });
+                return RedirectToAction("Index", "Home", new {area=""});
             }
             else
             {
@@ -93,6 +94,7 @@ namespace FoodApp.UI.Areas.Auth.Controllers
             {
                 AllowRefresh = true,
                 ExpiresUtc = DateTime.Now.AddMinutes(10),
+                IsPersistent = true
             };
         }
 

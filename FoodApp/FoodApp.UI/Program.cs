@@ -1,4 +1,5 @@
 using FoodApp.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace FoodApp.UI
 {
@@ -10,6 +11,19 @@ namespace FoodApp.UI
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                            .AddCookie(options =>
+                            {
+                                options.LoginPath = "/Auth/Authentication/LoginForm";
+                                options.AccessDeniedPath = "/Auth/Authentication/LoginForm";
+                                options.Cookie.Name = "FoodAppAuth";
+                                //options.ExpireTimeSpan = TimeSpan.FromMinutes(30); // Cookie expiration time
+                                options.SlidingExpiration = true; // Renew cookie on activity
+                                options.Cookie.HttpOnly = true; // Prevent client-side script access
+                                options.Cookie.IsEssential = true; // Mark cookie as essential for GDPR compliance
+                            });
+
             ConfigureServices.RegisterService(builder.Services, builder.Configuration);
 
             var app = builder.Build();
@@ -27,6 +41,7 @@ namespace FoodApp.UI
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

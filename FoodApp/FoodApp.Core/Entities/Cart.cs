@@ -8,6 +8,10 @@ namespace FoodApp.Core.Entities
 {
     public class Cart
     {
+        public Cart()
+        {
+            CartItem = new HashSet<CartItem>();
+        }
         public Guid Id { get; set; }
         public int UserId { get; set; }
         public bool? IsActive { get; set; }

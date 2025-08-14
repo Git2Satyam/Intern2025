@@ -61,7 +61,7 @@
                         <span>@product.Quantity</span>
                         <p class="card-text">@product.ProductDescription</p>
                         <h5>@product.Price</h5>
-                        <a asp-action="AdditemToCart" asp-controller="Cart" class="btn btn-primary">Add to cart</a>
+                        <a asp-action="AdditemToCart" asp-controller="Cart" asp-route-productId="@product.Id" class="btn btn-primary">Add to cart</a>
                         <a href="#" class="btn btn-warning float-end">Buy now</a>
                     </div>
                 </div>

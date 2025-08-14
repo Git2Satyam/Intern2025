@@ -36,9 +36,12 @@ namespace FoodApp.Services
             // Repository
 
             _services.AddScoped<IProductRepo, ProductRepo>();
+            _services.AddScoped<ICartRepo, CartRepo>();
 
             // Services
             _services.AddScoped<IProductService, ProductService>();
+            _services.AddScoped<ICartService, CartService>();
+
 
         }
     }
