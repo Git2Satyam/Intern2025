@@ -9,9 +9,10 @@ namespace PizzaHub.Services.Interface
 {
     public interface ICartService
     {
-        public bool AddItemToCart(Guid cartId, int productId);
+        public int AddItemToCart(Guid cartId, int productId);
 
         IEnumerable<CartItemModel> GetCartItems();
+        public int UpdateQuantity(string cartId, int productId, int qty);
 
     }
 }

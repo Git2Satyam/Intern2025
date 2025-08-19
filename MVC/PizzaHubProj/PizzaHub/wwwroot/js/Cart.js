@@ -4,39 +4,36 @@
         $.ajax({
             type: "GET",
             contentType: "application/json",
-            url: '/Cart/UpdateQuantity/' + id + "/" + qty,
+            url: '/Cart/UpdateQuantity?productId=' + id + '&qty=' + qty,
             success: function (data) {
                 if (data > 0) {
                     location.reload();
                 }
             },
-            error: function (jqXHR, textStatus, errorThrown) {
-                // Handle error
-                console.error('AJAX Error:', textStatus, errorThrown);
-                console.error('jqXHR:', jqXHR);
-                alert('An error occurred: ' + textStatus);
+            //error: function (result) { }
+
+            error: function (xhr, status, error) {
+                console.error("AJAX Error:", status, error);
+                alert("Error updating quantity: " + xhr.responseText || error);
             }
         })
     }
-    else if (id > 0 && existQty > 1 && qty > 0)
+    else if (id > 0 && existQty > 1 && qty < 0)
     {
         $.ajax({
             type: "GET",
             contentType: "application/json",
-            url: '/Cart/UpdateQuantity/' + id + "/" + qty,
+            url: '/Cart/UpdateQuantity?productId=' + id + '&qty=' + qty,
             success: function (data) {
                 if (data > 0) {
                     location.reload();
                 }
             },
-            error: function (jqXHR, textStatus, errorThrown) {
-                // Handle error
-                console.error('AJAX Error:', textStatus, errorThrown);
-                console.error('jqXHR:', jqXHR);
-                alert('An error occurred: ' + textStatus);
+            //error: function (result) { }
+            error: function (xhr, status, error) {
+                console.error("AJAX Error:", status, error);
+                alert("Error updating quantity: " + xhr.responseText || error);
             }
-
-
         })
     }
 }

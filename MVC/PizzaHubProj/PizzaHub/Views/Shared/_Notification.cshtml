@@ -11,5 +11,9 @@
         {
             <text>toastr.error('@Html.Raw(TempData["error"])'); </text>
         }
+        @if (TempData["info"] != null)
+        {
+            <text>toastr.info('@Html.Raw(TempData["info"])'); </text>
+        }
     </script>
 }

@@ -18,7 +18,7 @@ namespace PizzaHub.Services.Implementation
             _cartrepo = cartRepo;
         }
 
-        public bool AddItemToCart(Guid cartId, int productId)
+        public int AddItemToCart(Guid cartId, int productId)
         {
             return _cartrepo.AddItemToCart(cartId, productId);
         }
@@ -33,6 +33,11 @@ namespace PizzaHub.Services.Implementation
             {
                 throw;
             }
+        }
+
+        public int UpdateQuantity(string cartId, int productId, int qty)
+        {
+            return _cartrepo.UpdateQuantity(cartId, productId, qty);
         }
     }
 }

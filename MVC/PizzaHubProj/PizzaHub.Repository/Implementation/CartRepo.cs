@@ -19,8 +19,9 @@ namespace PizzaHub.Repository.Implementation
             _context = context;
         }
 
-        public bool AddItemToCart(Guid cartId, int productId)
+        public int AddItemToCart(Guid cartId, int productId)
         {
+            int result = 0;
             try
             {
                 var cartExist = CartExist(cartId);
@@ -49,8 +50,28 @@ namespace PizzaHub.Repository.Implementation
                      addCart.CartItems.Add(item);
                     _context.Carts.Add(addCart);
                     _context.SaveChanges();
+                    result = 1;
                 }
-                return true;
+                else
+                {
+                    var productExist = _context.CartItems.FirstOrDefault(c => c.CartId == cartId && c.ProductId == productId);
+                    if(productExist == null)
+                    {
+                        CartItem item = new CartItem
+                        {
+                            CartId = cartId,
+                            ProductId = product.Id,
+                            Quantity = 1,
+                            UnitPrice = product?.UnitPrice,
+                            CreatedDate = DateTime.Now,
+                            IsActive = true,
+                        };
+                        _context.CartItems.Add(item);
+                        _context.SaveChanges();
+                        result = 2;
+                    }
+                }
+                return result;
             }
             catch (Exception)
             {
@@ -83,6 +104,27 @@ namespace PizzaHub.Repository.Implementation
             {
                 throw;
             }
+        }
+
+        public int UpdateQuantity(string CartId, int productId, int qty)
+        {
+            try
+            {
+                var id = new Guid(CartId);
+                var item = _context.CartItems.FirstOrDefault(x => x.CartId == id && productId == x.ProductId);
+                if(item != null)
+                {
+                   item.Quantity += qty;
+                   _context.CartItems.Update(item);
+                   _context.SaveChanges();
+                }
+                return (int)item.Quantity;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+           
         }
 
         private Cart CartExist(Guid cartId)

@@ -45,5 +45,17 @@
                 }
             }
         }
+        else
+        {
+            <span class="text-center">Not item in your cart.</span>
+        }
     </div>
 </div>
+
+@if (TempData.Keys.Count > 0)
+{
+    <partial name="_Notification" />
+}
+@section Scripts{
+    <script src="~/js/Cart.js"></script>
+}

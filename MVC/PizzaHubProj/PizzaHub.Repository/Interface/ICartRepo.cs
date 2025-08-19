@@ -10,9 +10,10 @@ namespace PizzaHub.Repository.Interface
 {
     public interface ICartRepo
     {
-        public bool AddItemToCart(Guid cartId, int productId);
+        public int AddItemToCart(Guid cartId, int productId);
 
         IEnumerable<CartItemModel> GetCartItems();
+        public int UpdateQuantity(string CartId, int productId, int qty);
 
         //public Cart CartExist(Guid cartId);
 
