@@ -1,5 +1,6 @@
 ﻿using FoodApp.Core.DB_Context;
 using FoodApp.Core.Entities;
+using FoodApp.Models;
 using FoodApp.Repository.Interface;
 using FoodApp.Services.Interface;
 using System;
@@ -20,9 +21,9 @@ namespace FoodApp.Services.Implementation
             _context = context;
         }
 
-        public bool AddItemToCart(int productId, string cartId)
+        public int AddItemToCart(int productId, string cartId)
         {
-            bool flag = false;
+            int result = 0;
             var id = new Guid(cartId);
             var product = _cartRepo.GetProduct(productId);
             var cartExist = _cartRepo.CartExists(id);
@@ -52,10 +53,34 @@ namespace FoodApp.Services.Implementation
                  cart.CartItem.Add(item);
                 _context.Carts.Add(cart);
                 _context.SaveChanges();
-                flag = true;
-            } 
-            return flag;
+                 result = 1;
+            }
+            else
+            {
+                var productExist = _context.CartItems.FirstOrDefault(x => x.CartId == id && x.ProductId == productId);
+                if(productExist == null)
+                {
+                    var item = new CartItem
+                    {
+                        CartId = id,
+                        ProductId = product.Id,
+                        Quantity = 1,
+                        UnitPrice = product.Price,
+                        IsActive = true,
+                        CreatedDate = DateTime.Now
+                    };
+                    _context.CartItems.Add(item);
+                    _context.SaveChanges();
+                    result = 2;
+                }
+            }
+            return result;
             
+        }
+
+        public List<CartItemModel> GetProducts(Guid cartId)
+        {
+            return _cartRepo.GetProducts(cartId);
         }
     }
 }

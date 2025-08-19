@@ -18,10 +18,11 @@ namespace FoodApp.UI
                                 options.LoginPath = "/Auth/Authentication/LoginForm";
                                 options.AccessDeniedPath = "/Auth/Authentication/LoginForm";
                                 options.Cookie.Name = "FoodAppAuth";
-                                //options.ExpireTimeSpan = TimeSpan.FromMinutes(30); // Cookie expiration time
-                                options.SlidingExpiration = true; // Renew cookie on activity
-                                options.Cookie.HttpOnly = true; // Prevent client-side script access
-                                options.Cookie.IsEssential = true; // Mark cookie as essential for GDPR compliance
+                                options.SlidingExpiration = true;
+                                options.Cookie.HttpOnly = true;
+                                options.Cookie.IsEssential = true;
+                                options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+                                options.Cookie.SameSite = SameSiteMode.Lax;
                             });
 
             ConfigureServices.RegisterService(builder.Services, builder.Configuration);

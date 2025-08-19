@@ -36,6 +36,7 @@ namespace FoodApp.UI.Areas.Auth.Controllers
                 user.Email = userExist.Email;
 
                 GenerateTicket(user);
+                TempData["suceess"] = "Login successful!";
                 return RedirectToAction("Index", "Home", new {area=""});
             }
             else
@@ -89,13 +90,16 @@ namespace FoodApp.UI.Areas.Auth.Controllers
             };
 
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-            HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
-            new AuthenticationProperties()
+            var authProperties = new AuthenticationProperties()
             {
                 AllowRefresh = true,
-                ExpiresUtc = DateTime.Now.AddMinutes(10),
+                ExpiresUtc = DateTime.Now.AddMinutes(30),
                 IsPersistent = true
             };
+
+            HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity), authProperties);
+               
+           
         }
 
     }

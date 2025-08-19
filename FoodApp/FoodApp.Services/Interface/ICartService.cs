@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FoodApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,8 @@ namespace FoodApp.Services.Interface
 {
     public interface ICartService
     {
-        public bool AddItemToCart(int productId, string cartId);
+        public int AddItemToCart(int productId, string cartId);
+        public List<CartItemModel> GetProducts(Guid cartId);
+
     }
 }
