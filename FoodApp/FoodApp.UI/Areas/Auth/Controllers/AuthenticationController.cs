@@ -93,7 +93,7 @@ namespace FoodApp.UI.Areas.Auth.Controllers
             var authProperties = new AuthenticationProperties()
             {
                 AllowRefresh = true,
-                ExpiresUtc = DateTime.Now.AddMinutes(30),
+                ExpiresUtc = DateTime.Now.AddMonths(1),
                 IsPersistent = true
             };
 

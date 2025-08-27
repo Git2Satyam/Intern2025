@@ -9,7 +9,31 @@
     <link rel="stylesheet" href="~/FoodApp.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.css" rel="stylesheet" />
+    <style>
+        /* Fix header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1030; /* Above Bootstrap navbar */
+        }
 
+        /* Fix footer */
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1030;
+        }
+
+        /* Add spacing so content isn’t hidden */
+        main {
+            padding-top: 80px; /* adjust based on header height */
+            padding-bottom: 60px; /* adjust based on footer height */
+        }
+    </style>
 </head>
 <body class="mb-2">
     <partial name="_Header" />

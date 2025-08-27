@@ -3,11 +3,7 @@ using FoodApp.Core.Entities;
 using FoodApp.Models;
 using FoodApp.Repository.Interface;
 using FoodApp.Services.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace FoodApp.Services.Implementation
 {
@@ -73,14 +69,75 @@ namespace FoodApp.Services.Implementation
                     _context.SaveChanges();
                     result = 2;
                 }
+                else
+                {
+                    if(productExist != null && productExist.IsActive == false)
+                    {
+                        productExist.IsActive = true;
+                        _context.CartItems.Update(productExist);
+                        _context.SaveChanges(true);
+                    }
+                }
             }
             return result;
             
         }
 
+        public CheckoutModel Checkout(int productId, string cartId)
+        {
+           return _cartRepo.Checkout(productId, cartId);    
+        }
+
+        public CheckoutModel CheckoutCheckoutForHome(int productId)
+        {
+           return _cartRepo.CheckoutCheckoutForHome(productId);
+        }
+
+        public bool DeleteItem(int productId)
+        {
+            bool result = false;
+            try
+            {
+                var cartitem = _context.CartItems.FirstOrDefault(x => x.ProductId == productId);
+                if(cartitem != null)
+                {
+                     cartitem.IsActive = false;
+                    _context.CartItems.Update(cartitem);
+                    _context.SaveChanges();
+                    result =  true;
+                }
+                return result;
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
+        }
+
         public List<CartItemModel> GetProducts(Guid cartId)
         {
             return _cartRepo.GetProducts(cartId);
+        }
+
+        public int UpdateQuantity(int productId, int quantity)
+        {
+            int result = 0; 
+            try
+            {
+                var item = _context.CartItems.FirstOrDefault(item => item.ProductId == productId);
+                if(item != null)
+                {
+                    item.Quantity += quantity;
+                    _context.CartItems.Update(item);
+                    _context.SaveChanges();
+                }
+                result = (int)item.Quantity;
+                return result;
+            }
+            catch(Exception)
+            {
+                throw;
+            }
         }
     }
 }

@@ -14,6 +14,10 @@ namespace FoodApp.Repository.Interface
 
         public ProductModel GetProduct(int productId);
         public bool CartExists(Guid cartId);
-        
+        CheckoutModel Checkout(int productId, string cartId);
+        CheckoutModel CheckoutCheckoutForHome(int productId);
+
+
+
     }
 }

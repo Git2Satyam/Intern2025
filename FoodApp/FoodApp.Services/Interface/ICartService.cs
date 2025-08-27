@@ -1,4 +1,5 @@
-﻿using FoodApp.Models;
+﻿using FoodApp.Core.Entities;
+using FoodApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,10 @@ namespace FoodApp.Services.Interface
     {
         public int AddItemToCart(int productId, string cartId);
         public List<CartItemModel> GetProducts(Guid cartId);
+        public int UpdateQuantity(int productId, int quantity);
+        public bool DeleteItem(int productId);
+        CheckoutModel Checkout(int productId, string cartId);
+        CheckoutModel CheckoutCheckoutForHome(int productId);
 
     }
 }

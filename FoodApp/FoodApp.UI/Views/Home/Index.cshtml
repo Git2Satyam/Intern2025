@@ -62,14 +62,13 @@
                         <p class="card-text">@product.ProductDescription</p>
                         <h5>@product.Price</h5>
                         <a asp-action="AdditemToCart" asp-controller="Cart" asp-route-productId="@product.Id" class="btn btn-primary">Add to cart</a>
-                        <a href="#" class="btn btn-warning float-end">Buy now</a>
+                        <a asp-action="CheckoutForHome" asp-controller="Cart" asp-route-productId="@product.Id" class="btn btn-warning float-end">Buy now</a>
                     </div>
                 </div>
            </div>
         }
     </div>
 }
-@if(TempData.Keys.Count > 0)
-{
-    <partial name="_Notification" />
-}
+
+<partial name="_Notification" />
+

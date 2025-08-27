@@ -5,23 +5,45 @@
     Layout = "_FullLayout";
 }
 
-<div class="card">
+<div class="card border-0">
     <div class="card-body">
-        <span class="border-bottom">Total Item: <small>@Model.Count()</small></span>
+        <h5 class="border-bottom">Total Item: @Model.Count()</h5>
         @if(Model.Count() > 0)
         {
             foreach(var item in Model)
             {
-                <div class="row">
+                <div class="row mt-2 border-bottom">
                     <div class="col-md-2 col-lg-2">
-                        <img src="@Url.Content(item.Products.ImageURL)" />
+                        <img src="@Url.Content(item.Products.ImageURL)" style="max-width:295px; height: 23dvh;"/>
                     </div>
 
-                    <div>
-
+                    <div class="col-md-8 col-lg-8">
+                        <div class="mt-2"><strong>@item.Products.ProductName</strong></div>
+                        <div class="mt-2"><strong>@item.Products.ProductDescription</strong></div>
+                        <div class="mt-2"><small class="me-2">₹</small><strong>@item.UnitPrice</strong></div>
+                        <div class="mt-2 input-group">
+                            <button class="btn btn-secondary" onclick="updateQuantity('@item.Products.Id', -1)">-</button>
+                            <input class="form-control form-control-sm text-center" value="@item.Quantity" readonly style="max-width: 45px;"/>
+                            <button class="btn btn-secondary" onclick="updateQuantity('@item.Products.Id', 1)">+</button>
+                            <span class="ms-5">
+                                <button class="btn btn-danger">
+                                    <a href="@Url.Action("Delete", "Cart", new {productId = item.Products.Id})" class="text-white text-decoration-none">Delete</a>
+                                </button>
+                            </span>
+                           
+                        </div>
+                        <div class="mt-2">
+                            <a class="text-decoration-none" asp-action="Index" asp-controller="Home">see more product like this</a>
+                        </div>
+                       <button class="btn btn-warning mt-2 mb-2">
+                           <a asp-controller="Cart" asp-action="Checkout" asp-route-productId ="@item.Products.Id" class="text-decoration-none text-white">Buy</a>
+                       </button>
                     </div>
                 </div>
             }
+            <button class="btn btn-warning mt-2 mb-2">
+                <a asp-controller="Cart" asp-action="Checkout" asp-route-productId="0" class="text-decoration-none text-white">Buy All</a>
+            </button>
         }
         else
         {
@@ -29,4 +51,8 @@
         }
     </div>
 </div>
+
+@section Scripts {
+    <script src="~/js/cart.js"></script>
+}
 
