@@ -1,0 +1,6 @@
+@AllureStore.API_HostAddress = http://localhost:5246
+
+GET {{AllureStore.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
