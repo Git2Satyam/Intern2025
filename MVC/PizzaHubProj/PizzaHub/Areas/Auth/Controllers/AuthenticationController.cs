@@ -48,6 +48,7 @@ namespace PizzaHub.Areas.Auth.Controllers
                         Password = user.Password,
                     };
                     GenerateTicket(userML);
+                    TempData["suceess"] = "Login successful!";
                     return RedirectToAction("GetProducts", "Product", new { Area = "" });
                 }
 

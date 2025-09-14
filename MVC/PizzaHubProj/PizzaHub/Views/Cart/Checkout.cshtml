@@ -1,0 +1,61 @@
+﻿@using PizzaHub.Models
+@model CheckoutModel
+
+@{
+    Layout = "_FullLayout";
+}
+
+
+@if (Model != null)
+{
+    <div class="row" style="height: 69dvh; overflow-y: scroll">
+        <div class="col-md-8 col-lg-8">
+
+            @foreach (var product in Model.Products)
+            {
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-2 col-lg-2">
+                                <img src="@Url.Content(product.ImageUrl)" alt="no image" class="img-fluid" />
+                            </div>
+                            <div class="col-md-8 col-lg-8">
+                                <div class="mb-3">
+                                    <strong>@product.ProductName</strong>
+                                </div>
+
+                                <div class="mb-3">
+                                    <strong>@product.ProductDescription</strong>
+                                </div>
+
+                                <div class="mb-3">
+                                    <small>@product.Currency</small>
+                                    <strong>@product.UnitPrice</strong>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+        <div class="col-md-4 col-lg-4">
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h4>Order Summary</h4>
+                    <span class="fs-5">Total Item: <small>@Model.Products.Count</small></span><br/>
+                    <span class="fs-5">Total Amount: <small class="float-end">@Model.Order.TotalAmount</small></span><br />
+                    <span class="fs-5">Tax Amount: <small class="float-end">@Model.Order.TaxAmount</small></span><br />
+                    <span class="fs-5">Paying Amount: <small class="float-end"> ₹ @Model.Order.PayingAmount</small></span><br />
+
+                    <div class="mt-4">
+                        <button class="btn btn-success">Place Order</button>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+}
+

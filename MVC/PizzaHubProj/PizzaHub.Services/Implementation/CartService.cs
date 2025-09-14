@@ -23,6 +23,16 @@ namespace PizzaHub.Services.Implementation
             return _cartrepo.AddItemToCart(cartId, productId);
         }
 
+        public CheckoutModel CheckoutForCart(string cartId, int? productId)
+        {
+            return _cartrepo.CheckoutForCart(cartId, productId);
+        }
+
+        public bool DeleteItem(int productId)
+        {
+           return _cartrepo.DeleteItem(productId);
+        }
+
         public IEnumerable<CartItemModel> GetCartItems()
         {
             try

@@ -1,4 +1,4 @@
-﻿@if (TempData["success"] != null || TempData["error"] != null)
+﻿@if (TempData["success"] != null || TempData["error"] != null || TempData["info"] != null)
 {
     <script src="/lib/jquery/dist/jquery.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
@@ -7,11 +7,11 @@
         {
             <text>toastr.success('@Html.Raw(TempData["success"])'); </text>
         }
-        @if (TempData["error"] != null)
+        else if (TempData["error"] != null)
         {
             <text>toastr.error('@Html.Raw(TempData["error"])'); </text>
         }
-        @if (TempData["info"] != null)
+        else if (TempData["info"] != null)
         {
             <text>toastr.info('@Html.Raw(TempData["info"])'); </text>
         }

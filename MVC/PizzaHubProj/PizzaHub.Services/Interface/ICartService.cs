@@ -13,6 +13,8 @@ namespace PizzaHub.Services.Interface
 
         IEnumerable<CartItemModel> GetCartItems();
         public int UpdateQuantity(string cartId, int productId, int qty);
+        public CheckoutModel CheckoutForCart(string cartId, int? productId);
+        bool DeleteItem(int productId);
 
     }
 }

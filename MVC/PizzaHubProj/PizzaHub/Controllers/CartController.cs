@@ -73,6 +73,7 @@ namespace PizzaHub.Controllers
         [Route("Cart/UpdateQuantity")]
         public IActionResult UpdateQuantity(int productId, int qty)
         {
+           
             try
             {
                 var cartExist = HttpContext.Request.Cookies["CartId"];
@@ -135,8 +136,47 @@ namespace PizzaHub.Controllers
                 throw;
             }
         }
-    }
 
-    
+        public IActionResult CheckoutForCart(int? productId)
+        {
+            var cartExist = HttpContext.Request.Cookies["CartId"];
+            if (cartExist != null)
+            {
+                var result = _cartService.CheckoutForCart(cartExist, productId);
+                return View("Checkout", result);
+            }
+            else
+            {
+                return View();
+            }
+
+           
+        }
+
+        public IActionResult Checkout(int? productId)
+        {
+            return View("Checkout");
+        }
+
+        public IActionResult DeleteItem(int productId)
+        {
+            try
+            {
+                var result = _cartService.DeleteItem(productId);
+                if (result)
+                {
+                    return RedirectToAction("DisplayCartItems");
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+    }
     
 }
