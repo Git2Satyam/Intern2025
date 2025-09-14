@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AllureStore.API", "AllureStore.API.csproj", "{EBFDEB5F-D0E0-4285-8239-8D269D1DB9A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AllureStore.Models", "..\AllureStore.Models\AllureStore.Models.csproj", "{EB907575-95FC-44FA-8B59-7ACEC2764C30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AllureStore.Core", "..\AllureStore.Core\AllureStore.Core.csproj", "{9C22AF96-C634-4E63-B5B2-0355BCE2E71B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AllureStore.Repository", "..\AllureStore.Repository\AllureStore.Repository.csproj", "{83B6A136-C39B-462D-897F-543A0B0471A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AllureStore.Service", "..\AllureStore.Service\AllureStore.Service.csproj", "{114D961C-592D-4ADB-86FC-E5D361D09464}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EBFDEB5F-D0E0-4285-8239-8D269D1DB9A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBFDEB5F-D0E0-4285-8239-8D269D1DB9A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBFDEB5F-D0E0-4285-8239-8D269D1DB9A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBFDEB5F-D0E0-4285-8239-8D269D1DB9A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB907575-95FC-44FA-8B59-7ACEC2764C30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB907575-95FC-44FA-8B59-7ACEC2764C30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB907575-95FC-44FA-8B59-7ACEC2764C30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB907575-95FC-44FA-8B59-7ACEC2764C30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C22AF96-C634-4E63-B5B2-0355BCE2E71B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C22AF96-C634-4E63-B5B2-0355BCE2E71B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C22AF96-C634-4E63-B5B2-0355BCE2E71B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C22AF96-C634-4E63-B5B2-0355BCE2E71B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83B6A136-C39B-462D-897F-543A0B0471A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83B6A136-C39B-462D-897F-543A0B0471A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83B6A136-C39B-462D-897F-543A0B0471A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83B6A136-C39B-462D-897F-543A0B0471A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{114D961C-592D-4ADB-86FC-E5D361D09464}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{114D961C-592D-4ADB-86FC-E5D361D09464}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{114D961C-592D-4ADB-86FC-E5D361D09464}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{114D961C-592D-4ADB-86FC-E5D361D09464}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DB1AFD83-066C-4781-9700-F45E1EFBBF46}
+	EndGlobalSection
+EndGlobal
