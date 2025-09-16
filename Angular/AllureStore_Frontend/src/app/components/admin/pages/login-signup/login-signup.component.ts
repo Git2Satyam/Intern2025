@@ -42,6 +42,10 @@ export class LoginSignupComponent implements OnInit {
         container.classList.remove('active');
       });
     }
+   
+    this.apiService.getAllUser().subscribe(data => {
+      console.log(data);
+    });
   }
 
   onSubmit(type: string) {
@@ -77,6 +81,7 @@ export class LoginSignupComponent implements OnInit {
            this.toastr.success('Login successfully.', 'Sucess!');
            this.userForm.reset();
            this.authService.saveToken(data.Result);
+           
         }
        })
     }
