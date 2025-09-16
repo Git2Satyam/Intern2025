@@ -28,6 +28,8 @@ namespace PurchaseStore.Services
 
             services.AddScoped<IRepository<User>, Repository<User>>();
             services.AddScoped<IRepository<Product>, Repository<Product>>();
+            services.AddScoped<IRepository<AdminNavtItem>, Repository<AdminNavtItem>>();
+
 
 
             // Repo

@@ -13,5 +13,9 @@ namespace PurchaseStore.Repository.Interface
 
         UserModel AuthenticateUser(string email, string password);
 
+        IEnumerable<UserModel> GetUsers();
+        IEnumerable<AdminNavItemModel> GetAdminNavItems();
+
+
     }
 }

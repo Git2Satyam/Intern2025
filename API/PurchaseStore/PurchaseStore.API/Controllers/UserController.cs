@@ -97,9 +97,36 @@ namespace PurchaseStore.API.Controllers
         {
             try
             {
-                throw new NotImplementedException();
+                var user = _userService.GetUsers();
+                return Ok(user);
             }
             catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult GetAdminNavItems()
+        {
+            var response = new ResponseModel();
+            try
+            {
+                var items = _userService.GetAdminNavItems();
+                if(items == null)
+                {
+                    response.Success = false;
+                    response.Status = "Failed";
+                }
+                else
+                {
+                    response.Success = true;
+                    response.Status = "Ok";
+                    response.Result = items;
+                }
+                return Ok(response);
+            }
+            catch(Exception ex)
             {
                 return BadRequest(ex.Message);
             }

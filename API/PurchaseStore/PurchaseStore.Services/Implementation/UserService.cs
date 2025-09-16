@@ -22,6 +22,16 @@ namespace PurchaseStore.Services.Implementation
             return _userRepo.AuthenticateUser(email, password);
         }
 
+        public IEnumerable<AdminNavItemModel> GetAdminNavItems()
+        {
+            return _userRepo.GetAdminNavItems();
+        }
+
+        public IEnumerable<UserModel> GetUsers()
+        {
+            return _userRepo.GetUsers();
+        }
+
         public int InsertOrUpdateUser(UserModel user)
         {
             return _userRepo.InsertOrUpdateUser(user);

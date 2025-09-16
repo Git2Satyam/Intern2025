@@ -16,5 +16,6 @@ namespace PurchaseStore.Core.DB_Context
 
         public DbSet<Product> Products { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<AdminNavtItem> AdminNavItems { get; set; }
     }
 }

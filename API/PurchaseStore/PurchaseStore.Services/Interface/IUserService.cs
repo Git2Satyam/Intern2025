@@ -11,5 +11,8 @@ namespace PurchaseStore.Services.Interface
     {
         int InsertOrUpdateUser(UserModel user);
         UserModel AuthenticateUser(string email, string password);
+        IEnumerable<UserModel> GetUsers();
+
+        IEnumerable<AdminNavItemModel> GetAdminNavItems();
     }
 }

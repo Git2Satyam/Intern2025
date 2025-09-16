@@ -23,7 +23,7 @@ export class ApiService {
     return this.http.get<any>(`${this.url}User/AuthenticateUser`, {params: param})
   }
 
-  getAllUser(){
+  getAllUser(): Observable<any>{
     //let header_obj = new HttpHeaders().set("Authorization", "Bearer"+token);
     return this.http.get<any>(`${this.url}User/GetAllUser`);
   }
