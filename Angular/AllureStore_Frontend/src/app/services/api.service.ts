@@ -27,4 +27,8 @@ export class ApiService {
   getAllUser(): Observable<any>{
     return this.http.get<any>(`${this.url}User/GetAllUser`);
   }
+
+  getNavItems(): Observable<any>{
+    return this.http.get<any>(`${this.url}User/GetAdminNavItems`)
+  }
 }

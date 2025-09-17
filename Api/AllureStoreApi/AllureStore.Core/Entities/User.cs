@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,5 +19,10 @@ namespace AllureStore.Core.Entities
         public DateTime? CreatedDate { get; set; }
         public bool? IsDeleted { get; set; }  
         public DateTime? PasswordExpiryDate { get; set; }
+        
+        public int? RoleId { get; set; }
+
+        [ForeignKey("RoleId")]
+        public virtual AdminRole Role { get; set; }
     }
 }

@@ -9,9 +9,28 @@ import { ApiService } from 'src/app/services/api.service';
 export class AdminLayoutComponent implements OnInit {
 
   isExpanded: boolean = true;
-  constructor() { }
+  navItems: any[] = [];
+  showSubMenu: boolean = false
+  constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
+    this.loadApi();
+  }
+
+  loadApi(){
+    this.getNavItems();
+  }
+
+  getNavItems(){
+    this.apiService.getNavItems().subscribe({
+      next: resp => {
+        console.log(resp)
+        if(resp.Success){
+          this.navItems = resp.Result;
+        }
+      },
+      error: err => console.log(err)
+    })
   }
 
   toggleSidebar() {

@@ -17,6 +17,11 @@ namespace AllureStore.Service.Implementation
             _userRepo = userRepo;
         }
 
+        public IEnumerable<AdminNavItemModel> GetAdminNavItems()
+        {
+            return _userRepo.GetAdminNavItems();
+        }
+
         public IEnumerable<UserModel> GetAllUser()
         {
             return _userRepo.GetAllUser();

@@ -13,6 +13,7 @@ namespace AllureStore.Repository.Interface
         UserModel VerifyUser(string email, string password);
         IEnumerable<UserModel> GetAllUser();
 
+        IEnumerable<AdminNavItemModel> GetAdminNavItems();
 
     }
 }

@@ -67,3 +67,14 @@ app-admin-footer {
   background: antiquewhite;
   padding: 10px;
 }
+
+
+.submenu{
+  transform: scaleY(0);
+  transition: transform 300ms ease;
+  overflow-y: hidden;
+}
+
+.submenu.expand{
+  transform: scaleY(1);
+}

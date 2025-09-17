@@ -104,5 +104,35 @@ namespace AllureStore.Repository.Implementation
                 throw;
             }
         }
+
+        public IEnumerable<AdminNavItemModel> GetAdminNavItems()
+        {
+            try
+            {
+                var items = _context.AdminNavItems.Where(c => c.Enabled == true && c.ParentId == 0).Select(t => new AdminNavItemModel
+                {
+                    Id = t.Id,
+                    ParentId = t.ParentId,
+                    Name = t.Name,
+                    Url = t.Url,
+                    icon = t.icon,
+                    SortOrder = t.SortOrder,
+                    Children = _context.AdminNavItems.Where(x => x.Enabled == true && x.ParentId != t.ParentId).Select(item => new AdminNavItemModel
+                    {
+                        Id = item.Id,
+                        ParentId = item.ParentId,
+                        Name = item.Name,
+                        Url = item.Url,
+                        icon = item.icon,
+                        SortOrder= item.SortOrder,
+                    }).ToList(),
+                }).ToList();
+                return items;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

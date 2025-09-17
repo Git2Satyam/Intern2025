@@ -117,5 +117,31 @@ namespace AllureStore.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet]
+        public IActionResult GetAdminNavItems()
+        {
+            try
+            {
+                var response = new ResponseModel();
+                var items = _userService.GetAdminNavItems();
+                if (items.Any())
+                {
+                    response.Success = true;
+                    response.Status = "Ok";
+                    response.Result = items;
+                }
+                else
+                {
+                    response.Success = false;
+                    response.Status = "Failed";
+                }
+                return Ok(response);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using AllureStore.Core.Entities;
+﻿using AllureStore.Core.Config;
+using AllureStore.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -16,5 +17,12 @@ namespace AllureStore.Core.DB_Context
 
         public DbSet<Product> Products { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<AdminNavItem> AdminNavItems { get; set; }
+        public DbSet<AdminRole> AdminRoles { get; set; }
+
+        public void OnModelCreating(ModelBuilder builder)
+        {
+            builder.ApplyConfiguration(new UserMapConfig());
+        }
     }
 }

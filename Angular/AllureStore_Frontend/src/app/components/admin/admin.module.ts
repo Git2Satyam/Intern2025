@@ -8,6 +8,7 @@ import { AdminFooterComponent } from './shared/admin-footer/admin-footer.compone
 import { MaterialModule } from 'src/app/material/material.module';
 import { LoginSignupComponent } from './pages/login-signup/login-signup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RoleComponent } from './pages/role/role.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AdminLayoutComponent,
     AdminHeaderComponent,
     AdminFooterComponent,
-    LoginSignupComponent
+    LoginSignupComponent,
+    RoleComponent
   ],
   imports: [
     CommonModule,
