@@ -35,3 +35,14 @@
     height: 10dvh;
     background: aliceblue;
 }
+
+.submenu{
+  transition: transform 300ms ease;
+  overflow-y: hidden;
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+.submenu.expand{
+   transform: scaleY(1);
+}

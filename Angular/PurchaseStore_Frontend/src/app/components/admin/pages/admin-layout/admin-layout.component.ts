@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-admin-layout',
@@ -9,9 +10,28 @@ import { ToastrService } from 'ngx-toastr';
 export class AdminLayoutComponent implements OnInit {
 
   isExpanded: boolean = true;
-  constructor() { }
+  navItems: any[] = [];
+  showSubMenu: boolean = false;
+  constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
+    this.loadApi();
+  }
+
+  loadApi(){
+   this.getNavItems();
+  }
+
+  getNavItems(){
+    this.apiService.getNavItems().subscribe({
+      next: resp => {
+        if(resp.Success){
+           this.navItems = resp.Result;
+           console.log(this.navItems);
+        }
+      },
+      error: err => console.log(err)
+    })
   }
 
   toggleSidebar(){

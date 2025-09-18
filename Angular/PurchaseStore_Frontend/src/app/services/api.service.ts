@@ -28,4 +28,7 @@ export class ApiService {
     return this.http.get<any>(`${this.url}User/GetAllUser`);
   }
 
+  getNavItems(): Observable<any>{
+    return this.http.get<any>(`${this.url}User/GetAdminNavItems`);
+  }
 }

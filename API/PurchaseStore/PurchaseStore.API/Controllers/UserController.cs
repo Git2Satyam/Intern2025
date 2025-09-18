@@ -48,6 +48,7 @@ namespace PurchaseStore.API.Controllers
             }
         }
 
+
         [HttpGet]
         public IActionResult AuthenticateUser(string email, string password)
         {
