@@ -31,4 +31,8 @@ export class ApiService {
   getNavItems(): Observable<any>{
     return this.http.get<any>(`${this.url}User/GetAdminNavItems`)
   }
+
+  getAllRoles(): Observable<any>{
+    return this.http.get<any>(`${this.url}Role/GetAllRole`)
+  }
 }

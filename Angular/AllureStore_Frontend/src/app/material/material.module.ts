@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {MatSidenavModule} from '@angular/material/sidenav'
 import {MatListModule} from '@angular/material/list'; 
 import { MatIconModule } from '@angular/material/icon';
+import {MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [],
@@ -15,7 +16,8 @@ import { MatIconModule } from '@angular/material/icon';
     CommonModule,
     MatSidenavModule,
     MatListModule,
-    MatIconModule
+    MatIconModule,
+    MatTableModule 
   ]
 })
 export class MaterialModule { }

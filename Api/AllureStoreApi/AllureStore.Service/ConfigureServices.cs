@@ -25,14 +25,20 @@ namespace AllureStore.Service
             services.AddScoped<IRepository<User>, Repository<User>>();
             services.AddScoped<IRepository<AdminNavItem>, Repository<AdminNavItem>>();
             services.AddScoped<IRepository<Product>, Repository<Product>>();
+            services.AddScoped<IRepository<AdminRole>, Repository<AdminRole>>();
+
 
 
 
             // Repo
             services.AddScoped<IUserRepo, UserRepo>();
+            services.AddScoped<IRoleRepo, RoleRepo>();
+
 
             //Service
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IRoleService, RolesService>();
+
         }
     }
 }

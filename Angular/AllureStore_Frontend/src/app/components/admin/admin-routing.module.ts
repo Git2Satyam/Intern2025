@@ -15,7 +15,7 @@ const routes: Routes = [
       },
       {
         path: 'role',
-        component: RoleComponent
+        component: RoleComponent,
       }
     ]
   }
