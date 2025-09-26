@@ -7,11 +7,6 @@ using PurchaseStore.Repository.Implementation;
 using PurchaseStore.Repository.Interface;
 using PurchaseStore.Services.Implementation;
 using PurchaseStore.Services.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PurchaseStore.Services
 {
@@ -29,14 +24,20 @@ namespace PurchaseStore.Services
             services.AddScoped<IRepository<User>, Repository<User>>();
             services.AddScoped<IRepository<Product>, Repository<Product>>();
             services.AddScoped<IRepository<AdminNavtItem>, Repository<AdminNavtItem>>();
+            services.AddScoped<IRepository<AdminRole>, Repository<AdminRole>>();
+
 
 
 
             // Repo
-            services.AddScoped<IUserRepo, UserRepo>();  
+            services.AddScoped<IUserRepo, UserRepo>();
+            services.AddScoped<IRoleRepo, RoleRepo>();
+
 
             // Services
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IRoleService, RoleService>();
+
         }
     }
 }

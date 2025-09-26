@@ -31,4 +31,18 @@ export class ApiService {
   getNavItems(): Observable<any>{
     return this.http.get<any>(`${this.url}User/GetAdminNavItems`);
   }
+
+   getAllRoles(): Observable<any>{
+    return this.http.get<any>(`${this.url}Role/GetAllRole`)
+  }
+
+  saveRole(obj: any): Observable<any>{
+      return this.http.post<any>(`${this.url}Role/InsertOrUpdateRole`, obj)
+  }
+
+  deleteRole(name: any){
+    let param = new HttpParams();
+    param = param.set('roleName', name)
+    return this.http.delete<any>(`${this.url}Role/DeleteRole`, {params: param})
+  }
 }

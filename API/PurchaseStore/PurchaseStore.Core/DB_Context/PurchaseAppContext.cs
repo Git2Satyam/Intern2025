@@ -1,10 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PurchaseStore.Core.Config;
 using PurchaseStore.Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PurchaseStore.Core.DB_Context
 {
@@ -17,5 +13,11 @@ namespace PurchaseStore.Core.DB_Context
         public DbSet<Product> Products { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<AdminNavtItem> AdminNavItems { get; set; }
+        public DbSet<AdminRole> AdminRoles { get; set; }
+
+        public void OnModelCreating(ModelBuilder builder)
+        {
+            builder.ApplyConfiguration(new UserMapConfig());
+        }
     }
 }

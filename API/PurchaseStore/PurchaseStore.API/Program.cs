@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using PurchaseStore.Services;
+using Serilog;
 using System.Text;
 
 namespace PurchaseStore.API
@@ -14,6 +15,9 @@ namespace PurchaseStore.API
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+
+            builder.Host.UseSerilog((context, configuration) =>
+               configuration.ReadFrom.Configuration(context.Configuration));
 
             builder.Services.AddControllers().AddJsonOptions(options =>
             {
