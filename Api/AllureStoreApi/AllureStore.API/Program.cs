@@ -2,6 +2,7 @@
 using AllureStore.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Serilog;
 using System.Text;
 
 namespace AllureStore.API
@@ -13,6 +14,12 @@ namespace AllureStore.API
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+
+            // Configure Serilog to read from appsettings.json
+            builder.Host.UseSerilog((context, configuration) =>
+            {
+                configuration.ReadFrom.Configuration(context.Configuration);
+            });
 
             builder.Services.AddControllers().AddJsonOptions(options =>
             {

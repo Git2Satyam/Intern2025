@@ -17,6 +17,11 @@ namespace AllureStore.Service.Implementation
             _roleRepo = roleRepo;
         }
 
+        public bool DeleteRole(string roleName)
+        {
+            return _roleRepo.DeleteRole(roleName);
+        }
+
         public IEnumerable<AdminRoleModel> GetAllRoles()
         {
            return _roleRepo.GetAllRoles();

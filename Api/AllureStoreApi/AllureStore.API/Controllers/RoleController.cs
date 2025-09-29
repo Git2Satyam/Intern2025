@@ -10,10 +10,12 @@ namespace AllureStore.API.Controllers
     public class RoleController : ControllerBase
     {
         private IRoleService _roleService;
+        private ILogger<RoleController> _logger;    
 
-        public RoleController(IRoleService roleService)
+        public RoleController(IRoleService roleService, ILogger<RoleController> logger)
         {
             _roleService = roleService;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -64,6 +66,25 @@ namespace AllureStore.API.Controllers
             catch(Exception ex)
             {
                 return BadRequest(ex.Message);  
+            }
+        }
+
+        [HttpDelete]
+        public IActionResult DeleteRole(string roleName)
+        {
+            try
+            {
+                var result = _roleService.DeleteRole(roleName);
+                if (result)
+                {
+                    return Ok(result);
+                }
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message, ex);
+                return BadRequest(ex.Message);
             }
         }
     }

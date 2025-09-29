@@ -9,6 +9,7 @@ import { MaterialModule } from 'src/app/material/material.module';
 import { LoginSignupComponent } from './pages/login-signup/login-signup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RoleComponent } from './pages/role/role.component';
+import { UsersComponent } from './pages/users/users.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { RoleComponent } from './pages/role/role.component';
     AdminHeaderComponent,
     AdminFooterComponent,
     LoginSignupComponent,
-    RoleComponent
+    RoleComponent,
+    UsersComponent
   ],
   imports: [
     CommonModule,

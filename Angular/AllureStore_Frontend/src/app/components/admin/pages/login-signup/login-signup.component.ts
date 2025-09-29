@@ -43,9 +43,9 @@ export class LoginSignupComponent implements OnInit {
       });
     }
    
-    this.apiService.getAllUser().subscribe(data => {
-      console.log(data);
-    });
+    // this.apiService.getAllUser().subscribe(data => {
+    //   console.log(data);
+    // });
   }
 
   onSubmit(type: string) {

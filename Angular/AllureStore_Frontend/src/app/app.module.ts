@@ -7,6 +7,7 @@ import { MaterialModule } from './material/material.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     MaterialModule,
     HttpClientModule,
     ToastrModule.forRoot(),
+    NgbModalModule
   ],
   providers: [
     {

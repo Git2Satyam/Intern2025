@@ -10,8 +10,8 @@ namespace AllureStore.Models
     {
         //public int Id { get; set; }
         public string? RoleName { get; set; }
-        public bool? View { get; set; }
-        public bool? Edit { get; set; }
+        public string? View { get; set; }
+        public string? Edit { get; set; }
         
     }
 }

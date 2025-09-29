@@ -96,6 +96,7 @@ namespace AllureStore.Repository.Implementation
                     Email = x.Email,
                     Address = x.Address,
                     PhoneNumber = x.PhoneNumber,
+                    RoleName = x.Role.RoleName,
                 }).ToList();
                 return users;
             }

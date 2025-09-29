@@ -32,8 +32,8 @@ namespace AllureStore.Repository.Implementation
                 if (roleExist != null)
                 {
                     roleExist.IsDeleted = false;
-                    roleExist.View = model.View;
-                    roleExist.Edit = model.Edit;
+                    roleExist.View = Convert.ToBoolean(model.View);
+                    roleExist.Edit = Convert.ToBoolean(model.Edit);
 
                     _context.SaveChanges();
                     result = 1;
@@ -43,8 +43,8 @@ namespace AllureStore.Repository.Implementation
                     var role = new AdminRole()
                     {
                         RoleName = model.RoleName,
-                        View = model.View,
-                        Edit = model.Edit,
+                        View = Convert.ToBoolean(model.View),
+                        Edit = Convert.ToBoolean(model.Edit),
                         IsDeleted = false
                     };
                     _context.AdminRoles.Add(role);
@@ -66,12 +66,32 @@ namespace AllureStore.Repository.Implementation
                 var roles = _context.AdminRoles.Where(r => r.IsDeleted == false).Select(r => new AdminRoleModel
                 {
                     RoleName = r.RoleName,
-                    View = r.View,
-                    Edit =r.Edit
+                    View =  r.View.ToString(),
+                    Edit =  r.Edit.ToString()
                 }).ToList();
                 return roles;
             }
             catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool DeleteRole(string roleName)
+        {
+            bool flag = false;
+            try
+            {
+                var role = _context.AdminRoles.FirstOrDefault(r => r.RoleName == roleName);
+                if(role != null)
+                {
+                    role.IsDeleted = true;
+                    _context.SaveChanges();
+                    flag = true;
+                }
+                return flag;
+            }
+            catch(Exception)
             {
                 throw;
             }

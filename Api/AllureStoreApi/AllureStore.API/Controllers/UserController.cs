@@ -91,7 +91,7 @@ namespace AllureStore.API.Controllers
             }
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         public IActionResult GetAllUser()
         {
