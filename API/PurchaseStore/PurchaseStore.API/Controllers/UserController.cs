@@ -92,14 +92,26 @@ namespace PurchaseStore.API.Controllers
             }
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         public IActionResult GetAllUser()
         {
+            var response = new ResponseModel();
             try
             {
                 var user = _userService.GetUsers();
-                return Ok(user);
+                if (user.Any())
+                {
+                    response.Success = true;
+                    response.Status = "Ok";
+                    response.Result = user;
+                }
+                else
+                {
+                    response.Success = false;
+                    response.Status = "Failed";
+                }
+                return Ok(response);
             }
             catch (Exception ex)
             {

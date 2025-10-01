@@ -9,6 +9,8 @@ import { MaterialModule } from 'src/app/material.module';
 import { LoginSignupComponent } from './pages/login-signup/login-signup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RoleComponent } from './pages/role/role.component';
+import { UsersComponent } from './pages/users/users.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 
 @NgModule({
@@ -17,14 +19,16 @@ import { RoleComponent } from './pages/role/role.component';
     AdminHeaderComponent,
     AdminFooterComponent,
     LoginSignupComponent,
-    RoleComponent
+    RoleComponent,
+    UsersComponent
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgMultiSelectDropDownModule
   ]
 })
 export class AdminModule { }
