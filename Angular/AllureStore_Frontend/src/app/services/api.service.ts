@@ -45,4 +45,8 @@ export class ApiService {
     param = param.set('roleName', name)
     return this.http.delete<any>(`${this.url}Role/DeleteRole`, {params: param})
   }
+
+   assignRole(obj: any): Observable<any>{
+      return this.http.post<any>(`${this.url}User/AssignRoleToUser`, obj)
+  }
 }

@@ -10,6 +10,7 @@ import { LoginSignupComponent } from './pages/login-signup/login-signup.componen
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RoleComponent } from './pages/role/role.component';
 import { UsersComponent } from './pages/users/users.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { UsersComponent } from './pages/users/users.component';
     AdminRoutingModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgMultiSelectDropDownModule
   ]
 })
 export class AdminModule { }

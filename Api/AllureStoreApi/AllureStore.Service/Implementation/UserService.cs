@@ -17,6 +17,11 @@ namespace AllureStore.Service.Implementation
             _userRepo = userRepo;
         }
 
+        public bool AssignRoleToUsers(AssignRoleModel role)
+        {
+            return _userRepo.AssignRoleToUsers(role);
+        }
+
         public IEnumerable<AdminNavItemModel> GetAdminNavItems()
         {
             return _userRepo.GetAdminNavItems();

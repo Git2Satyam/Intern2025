@@ -23,6 +23,6 @@ namespace AllureStore.Core.Entities
         public int? RoleId { get; set; }
 
         [ForeignKey("RoleId")]
-        public virtual AdminRole Role { get; set; }
+        public virtual AdminRole? Role { get; set; }
     }
 }

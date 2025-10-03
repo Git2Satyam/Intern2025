@@ -13,5 +13,7 @@ namespace AllureStore.Service.Interface
         UserModel VerifyUser(string email, string password);
         IEnumerable<UserModel> GetAllUser();
         IEnumerable<AdminNavItemModel> GetAdminNavItems();
+        bool AssignRoleToUsers(AssignRoleModel role);
+
     }
 }

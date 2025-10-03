@@ -3,11 +3,7 @@ using AllureStore.Core.Entities;
 using AllureStore.Models;
 using AllureStore.Repository.Interface;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace AllureStore.Repository.Implementation
 {
@@ -68,13 +64,14 @@ namespace AllureStore.Repository.Implementation
             var ml = new UserModel();
             try
             {
-                var user = _context.Users.FirstOrDefault(x => x.Email.Equals(email) && x.Password == password && x.PasswordExpiryDate > DateTime.Now);
+                var user = _context.Users.Include(x => x.Role).FirstOrDefault(x => x.Email.Equals(email) && x.Password == password && x.PasswordExpiryDate > DateTime.Now);
                 if (user != null)
                 {
                     ml.Id = user.Id;
                     ml.FirstName = user.FirstName;
                     ml.LastName = user.LastName;
                     ml.Email = user.Email;
+                    ml.RoleName = user.Role.RoleName;
                 }
                 return ml;
             }
@@ -129,6 +126,33 @@ namespace AllureStore.Repository.Implementation
                     }).ToList(),
                 }).ToList();
                 return items;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool AssignRoleToUsers(AssignRoleModel role)
+        {
+            bool flag = false;
+            try
+            {
+                var roleId = _context.AdminRoles.FirstOrDefault(x => x.RoleName.Equals(role.RoleName)) ?.Id;
+                if(roleId > 0 && role.UserIds.Length > 0)
+                {
+                    foreach(var id in role.UserIds)
+                    {
+                        var userExist = _context.Users.FirstOrDefault(x => x.Id == id);
+                        if(userExist != null)
+                        {
+                            userExist.RoleId = roleId;
+                            _context.SaveChanges();
+                            flag = true;
+                        }
+                    }
+                }
+                return flag;
             }
             catch (Exception)
             {

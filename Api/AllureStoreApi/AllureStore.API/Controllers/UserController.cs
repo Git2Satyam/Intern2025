@@ -59,7 +59,8 @@ namespace AllureStore.API.Controllers
                     var claim = new List<Claim>
                     {
                         new Claim(ClaimTypes.Email, result.Email),
-                        new Claim(ClaimTypes.NameIdentifier, result.FirstName)
+                        new Claim(ClaimTypes.NameIdentifier, result.FirstName),
+                        new Claim(ClaimTypes.Role, result.RoleName)
                     };
 
                     var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:key"]));
@@ -143,5 +144,31 @@ namespace AllureStore.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost]
+        public IActionResult AssignRoleToUser(AssignRoleModel model)
+        {
+            try
+            {
+                var response = new ResponseModel();
+                var result = _userService.AssignRoleToUsers(model);
+                if (result)
+                {
+                    response.Success = true;
+                    response.Status = "Ok";
+                }
+                else
+                {
+                    response.Success = false;
+                    response.Status = "Failed";
+                }
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
     }
 }

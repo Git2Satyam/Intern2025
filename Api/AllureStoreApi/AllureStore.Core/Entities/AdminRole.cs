@@ -17,6 +17,6 @@ namespace AllureStore.Core.Entities
         public bool? IsDeleted { get; set; }
         public bool? View {  get; set; }
         public bool? Edit { get; set; }
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<User>? Users { get; set; }
     }
 }

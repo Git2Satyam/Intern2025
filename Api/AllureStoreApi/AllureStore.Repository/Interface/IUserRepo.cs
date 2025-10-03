@@ -12,8 +12,9 @@ namespace AllureStore.Repository.Interface
         int InsertOrUpdateUser(UserModel user);
         UserModel VerifyUser(string email, string password);
         IEnumerable<UserModel> GetAllUser();
-
         IEnumerable<AdminNavItemModel> GetAdminNavItems();
+
+        bool AssignRoleToUsers(AssignRoleModel role);
 
     }
 }

@@ -8,6 +8,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
     MaterialModule,
     HttpClientModule,
     ToastrModule.forRoot(),
-    NgbModalModule
+    NgbModalModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [
     {
