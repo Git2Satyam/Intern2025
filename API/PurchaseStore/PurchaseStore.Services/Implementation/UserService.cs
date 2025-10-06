@@ -17,6 +17,11 @@ namespace PurchaseStore.Services.Implementation
             _userRepo = userRepo;
         }
 
+        public bool AssignRoleToUsers(AssignRoleModel model)
+        {
+            return _userRepo.AssignRoleToUsers(model);
+        }
+
         public UserModel AuthenticateUser(string email, string password)
         {
             return _userRepo.AuthenticateUser(email, password);

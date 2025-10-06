@@ -1,7 +1,8 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -21,7 +22,7 @@ export class UsersComponent implements OnInit {
    dataSource: MatTableDataSource<any>;
 
    assignRoleForm: FormGroup;
-   constructor(private apiService: ApiService, private modalService: NgbModal, private fb: FormBuilder) {
+   constructor(private apiService: ApiService, private modalService: NgbModal, private fb: FormBuilder, private toastr: ToastrService) {
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'Id',
@@ -70,19 +71,42 @@ export class UsersComponent implements OnInit {
   }
 
   openModal(content: TemplateRef<any>){
-    this.modalService.open(content);
+     const modalOptions: NgbModalOptions = {
+      backdrop: 'static', 
+      keyboard: false, 
+    };
+    this.modalService.open(content, modalOptions);
+    this.assignRoleForm.controls['RoleName'].setValue(null);
   }
 
   closeModal(){
-
+     this.modalService.dismissAll();
+     this.assignRoleForm.reset();
   }
 
   
-  onSubmit(){
-     console.log(this.assignRoleForm.value);
-     if(this.assignRoleForm.valid){
-       let ids = this.assignRoleForm.controls['Users'].value.map((x: any) => x.Id);
-     }
+  onSubmit() {
+    console.log(this.assignRoleForm.value);
+    if (this.assignRoleForm.valid) {
+      let ids = this.assignRoleForm.controls['Users'].value.map((x: any) => x.Id);
+      let obj = {
+        RoleName: this.assignRoleForm.controls['RoleName'].value,
+        UserIds: ids
+      }
+      console.log(obj);
+      this.apiService.assignRole(obj).subscribe({
+        next: resp => {
+          if (resp.Success) {
+            this.toastr.success('Record updated successfully', 'Success');
+            this.assignRoleForm.reset();
+            this.modalService.dismissAll();
+          }
+          else {
+            this.toastr.error('Something went wrong', 'Error!');
+          }
+        }
+      })
+    }
   }
 
   onItemSelect(evet: any){

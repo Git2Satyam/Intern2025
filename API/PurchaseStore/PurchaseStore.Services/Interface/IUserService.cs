@@ -14,5 +14,7 @@ namespace PurchaseStore.Services.Interface
         IEnumerable<UserModel> GetUsers();
 
         IEnumerable<AdminNavItemModel> GetAdminNavItems();
+        bool AssignRoleToUsers(AssignRoleModel model);
+
     }
 }

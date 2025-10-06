@@ -12,5 +12,6 @@ namespace PurchaseStore.Services.Interface
         int InsertOrUpdateRole(AdminRoleModel model);
         IEnumerable<AdminRoleModel> GetAllRoles();
         bool DeleteRole(string roleName);
+
     }
 }

@@ -24,6 +24,7 @@
     "@popperjs/core": "^2.11.8",
     "@types/node": "^16.11.7",
     "bootstrap": "^5.3.6",
+    "jwt-decode": "^4.0.0",
     "ng-multiselect-dropdown": "^0.3.8",
     "ngx-toastr": "^15.2.2",
     "popper.js": "^1.16.1",

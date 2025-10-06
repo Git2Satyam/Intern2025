@@ -62,6 +62,8 @@ namespace PurchaseStore.API.Controllers
                     {
                         new Claim(ClaimTypes.Email, result.Email),
                         new Claim(ClaimTypes.NameIdentifier, result.FirstName),
+                        new Claim(ClaimTypes.Role, result.RoleName),
+
                     };
 
                     var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
@@ -140,6 +142,31 @@ namespace PurchaseStore.API.Controllers
                 return Ok(response);
             }
             catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public IActionResult AssignRoleToUsers(AssignRoleModel model)
+        {
+            var response = new ResponseModel();
+            try
+            {
+                var result = _userService.AssignRoleToUsers(model);
+                if (!result)
+                {
+                    response.Success = false;
+                    response.Status = "Failed";
+                }
+                else
+                {
+                    response.Success = true;
+                    response.Status = "Ok";
+                }
+                return Ok(response);
+            }
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }

@@ -74,13 +74,12 @@ namespace PurchaseStore.API.Controllers
         {
             try
             {
-                throw new NotImplementedException();
-                //var result = _roleService.DeleteRole(roleName);
-                //if (result)
-                //{
-                //    return Ok(result);
-                //}
-                //return NotFound();
+                var result = _roleService.DeleteRole(roleName);
+                if (result)
+                {
+                    return Ok(result);
+                }
+                return NotFound();
             }
             catch (Exception ex)
             {

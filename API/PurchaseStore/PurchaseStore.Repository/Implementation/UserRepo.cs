@@ -67,12 +67,13 @@ namespace PurchaseStore.Repository.Implementation
             var userML = new UserModel();
             try
             {
-                var user = _context.Users.FirstOrDefault(x => x.Email == email && x.Password == password && x.PasswordExpiryDate > currentTime);
+                var user = _context.Users.Include(x => x.Role).FirstOrDefault(x => x.Email == email && x.Password == password && x.PasswordExpiryDate > currentTime);
                 if(user != null)
                 {
                     userML.Email = user.Email;
                     userML.FirstName = user.FirstName; 
                     userML.LastName = user.LastName;
+                    userML.RoleName = user.Role.RoleName;
                 }
                 return userML;
             }
@@ -128,6 +129,34 @@ namespace PurchaseStore.Repository.Implementation
                 return item;
             }
             catch(Exception )
+            {
+                throw;
+            }
+        }
+
+        public bool AssignRoleToUsers(AssignRoleModel model)
+        {
+            bool flag = false;
+            try
+            {
+                var roleId = _context.AdminRoles.FirstOrDefault(x => x.RoleName.Equals(x.RoleName)) ? .Id;
+                var users = _context.Users.ToList();
+                if(roleId != null && model.UserIds.Length > 0)
+                {
+                    foreach(var userid in model.UserIds)
+                    {
+                        var userExist = users.FirstOrDefault(x => x.Id == userid);
+                        if(userExist != null)
+                        {
+                            userExist.RoleId = roleId;
+                        }
+                    }
+                    _context.SaveChanges();
+                    flag = true;
+                }
+                return flag;
+            }
+            catch(Exception)
             {
                 throw;
             }

@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-role',
@@ -18,7 +19,7 @@ export class RoleComponent implements OnInit {
   roleForm: FormGroup;
   selectedValue: any = 'True';
 
-  constructor(private apiService: ApiService, private fb: FormBuilder, private modalServie: NgbModal, private toastr: ToastrService) {
+  constructor(private apiService: ApiService, private fb: FormBuilder, private modalServie: NgbModal, private toastr: ToastrService, private auth: AuthService) {
      this.roleForm = this.fb.group({
        RoleName: ['', Validators.required],
        View: [this.selectedValue, Validators.required],
@@ -27,6 +28,8 @@ export class RoleComponent implements OnInit {
    }
 
   ngOnInit(): void {
+   const role = this.auth.getRole();
+   console.log(role);
     this.loadApi();
   }
 

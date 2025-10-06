@@ -4,6 +4,7 @@ import { AdminLayoutComponent } from './pages/admin-layout/admin-layout.componen
 import { LoginSignupComponent } from './pages/login-signup/login-signup.component';
 import { RoleComponent } from './pages/role/role.component';
 import { UsersComponent } from './pages/users/users.component';
+import { AuthGuard } from 'src/app/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -17,10 +18,12 @@ const routes: Routes = [
       {
         path: 'role',
         component: RoleComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'users',
         component: UsersComponent,
+        canActivate: [AuthGuard]
       }
     ]
   }
