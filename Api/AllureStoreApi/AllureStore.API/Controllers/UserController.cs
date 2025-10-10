@@ -68,7 +68,7 @@ namespace AllureStore.API.Controllers
 
                     var secToken = new JwtSecurityToken(_config["Jwt:Issuer"],
                         claims: claim,
-                        expires: DateTime.Now.AddMinutes(120),
+                        expires: DateTime.Now.AddMinutes(3),
                         signingCredentials: credential,
                         audience: _config["Jwt:Audience"]
                         );
@@ -92,7 +92,7 @@ namespace AllureStore.API.Controllers
             }
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         public IActionResult GetAllUser()
         {

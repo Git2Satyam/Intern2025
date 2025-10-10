@@ -35,33 +35,71 @@
             <form [formGroup]="userForm" autocomplete="off" (ngSubmit)="onSubmit('register')">
 
                  <div class="input-box animation" style="--li:18; --S:1">
-                    <input type="text" required autocomplete="off" formControlName="firstName">
-                    <label for="">First Name</label>
+                     <input type="text" required autocomplete="off" formControlName="firstName">
+                     <label for="">First Name</label>
+                    <div>
+                        <small *ngIf="f['firstName'].hasError('required') && f['firstName'].touched" class="text-white">First Name is required</small>
+                        <small *ngIf="f['firstName'].hasError('noSpace')" class="text-white">Space is not allowed</small>
+                    </div>
                 </div>
 
                 <div class="input-box animation" style="--li:19; --S:1">
-                    <input type="text" required autocomplete="off" formControlName="lastName" >
+                    <input type="text" required autocomplete="off" formControlName="lastName">
                     <label for="">Last Name</label>
+
+                    <div>
+                        <small *ngIf="f['lastName'].hasError('required') && f['lastName'].touched" class="text-white">Last Name is required</small>
+                        <small *ngIf="f['lastName'].hasError('noSpace')" class="text-white">Space is not allowed</small>
+                    </div>
                 </div>
 
                 <div class="input-box animation" style="--li:20; --S:1">
                     <input type="email" required autocomplete="off" formControlName="email">
                     <label for="">Email</label>
+
+                    <div>
+                        <small *ngIf="f['email'].hasError('required') && f['email'].touched" class="text-white">Email is required</small>
+                        <small *ngIf="f['email'].hasError('emailTaken')" class="text-white">Email already exist</small>
+                    </div>
                 </div>
 
                 <div class="input-box animation" style="--li:21; --S:3">
-                    <input type="password" required autocomplete="new-password" formControlName="password">
-                    <label for="">Password</label>
+                    <input type="password" required autocomplete="new-password" name="new-password" formControlName="password">
+                    <label for="new-password">Password</label>
+
+                    <div>
+                        <small *ngIf="f['password'].hasError('required') && f['password'].touched" class="text-white">Password is required</small>
+
+                    </div>
+                </div>
+
+                <div class="input-box animation" style="--li:21; --S:3">
+                    <input type="password" name="confirm-new-password" required autocomplete="confirm-new-password" autocorrect="off" inputmode="none" formControlName="confirmPassword">
+                    <label for="confirm-new-password">Confirm Password</label>
+                    <div>
+                        <small *ngIf="f['confirmPassword'].hasError('required') && f['confirmPassword'].touched" class="text-white">Confirm Password is required</small>
+                         <small *ngIf="userForm.errors?.['passwordMisMatch']" class="text-white">Password does not match</small>
+                    </div>
                 </div>
 
                  <div class="input-box animation" style="--li:22; --S:3">
-                    <input type="number" required autocomplete="new-password" formControlName="phoneNumber" >
-                    <label for="">Phone Number</label>
+                     <input type="number" required autocomplete="new-password" formControlName="phoneNumber" >
+                     <label for="">Phone Number</label>
+
+                    <div>
+                        <small *ngIf="f['phoneNumber'].hasError('required') && f['phoneNumber'].touched" class="text-white">Phone Number is required</small>
+
+                    </div>
                 </div>
 
                  <div class="input-box animation" style="--li:23; --S:3">
-                    <input type="text" required autocomplete="new-password" formControlName="address" >
-                    <label for="">Address</label>
+                     <input type="text" required autocomplete="new-password" formControlName="address">
+                     <label for="">Address</label>
+
+                    <div>
+                        <small *ngIf="f['address'].hasError('required') && f['address'].touched" class="text-white">Address is required</small>
+
+                    </div>
                 </div>
 
                 <div class="input-box animation" style="--li:24; --S:4">

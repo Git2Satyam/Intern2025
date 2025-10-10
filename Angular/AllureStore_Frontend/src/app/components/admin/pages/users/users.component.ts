@@ -83,6 +83,7 @@ export class UsersComponent implements OnInit {
 
   openModal(content: TemplateRef<any>){
       this.modalService.open(content);
+      this.assignRoleForm.controls['RoleName'].setValue(null);
   }
 
   closeModal(){
