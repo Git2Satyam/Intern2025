@@ -22,17 +22,32 @@ export class AuthService {
   }
 
   getRole(){
-    debugger;
     const token = this.getToken();
     if(token == null) return null;
     try{
        const  decodeToken: any = jwtDecode(token);
+       console.log(decodeToken);
        let roleName = decodeToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
        console.log(roleName);
        return roleName || null;
     }
     catch(Error){
       return null;
+    }
+  }
+
+  isTokenExpired(): boolean{
+     const token = this.getToken();
+    if(token == null) return false;
+     try{
+       const decodeToken: any = jwtDecode(token);
+       let expiryTime = decodeToken["exp"] * 1000;
+       let currentTime = Date.now();
+       if(expiryTime > currentTime) return true;
+       else return false
+    }
+    catch(Error){
+      return false;
     }
   }
 }

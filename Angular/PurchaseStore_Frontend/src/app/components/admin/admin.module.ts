@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RoleComponent } from './pages/role/role.component';
 import { UsersComponent } from './pages/users/users.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     AdminFooterComponent,
     LoginSignupComponent,
     RoleComponent,
-    UsersComponent
+    UsersComponent,
+    DashboardComponent
   ],
   imports: [
     CommonModule,

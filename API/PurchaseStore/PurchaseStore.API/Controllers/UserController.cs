@@ -94,7 +94,7 @@ namespace PurchaseStore.API.Controllers
             }
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         public IActionResult GetAllUser()
         {

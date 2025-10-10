@@ -58,7 +58,6 @@ export class RoleComponent implements OnInit {
     this.roleForm.reset();
     this.roleForm.controls['View'].setValue('True');
     this.roleForm.controls['Edit'].setValue('True');
-
   }
 
   onSubmit(){

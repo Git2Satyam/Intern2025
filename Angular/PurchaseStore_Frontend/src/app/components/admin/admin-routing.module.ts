@@ -5,6 +5,8 @@ import { LoginSignupComponent } from './pages/login-signup/login-signup.componen
 import { RoleComponent } from './pages/role/role.component';
 import { UsersComponent } from './pages/users/users.component';
 import { AuthGuard } from 'src/app/guards/auth.guard';
+import { RoleGuard } from 'src/app/guards/role.guard';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
@@ -12,18 +14,24 @@ const routes: Routes = [
     component: AdminLayoutComponent,
     children: [
       {
-        path: '',
+         path: '',
+         component: DashboardComponent
+      },
+      {
+        path: 'login',
         component: LoginSignupComponent,
       },
       {
         path: 'role',
         component: RoleComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard, RoleGuard],
+        data: {role: ['Super Admin']}
       },
       {
         path: 'users',
         component: UsersComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard, RoleGuard],
+        data: {role: ['Super Admin', 'Admin']}
       }
     ]
   }
