@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PurchaseStore.Core.Entities
+namespace PurchaseStore.Models
 {
-    public class Product
+    public class ProductModel
     {
         public int Id { get; set; }
 
@@ -26,9 +26,7 @@ namespace PurchaseStore.Core.Entities
         public int? CreatedBy { get; set; }
         public int? ModifiedBy { get; set; }
         public DateTime? ModifiedDate { get; set; }
-
+        public byte[] ImageData { get; set; }
         public bool? Enabled { get; set; }
-
-        public int? SubCatId { get; set; }
     }
 }

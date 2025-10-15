@@ -14,6 +14,10 @@ namespace PurchaseStore.Core.DB_Context
         public DbSet<User> Users { get; set; }
         public DbSet<AdminNavtItem> AdminNavItems { get; set; }
         public DbSet<AdminRole> AdminRoles { get; set; }
+        public DbSet<Category> Categories { get; set; }
+
+        public DbSet<SubCategory> SubCategories { get; set; }
+
 
         public void OnModelCreating(ModelBuilder builder)
         {

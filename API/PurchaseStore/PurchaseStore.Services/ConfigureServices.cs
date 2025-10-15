@@ -25,6 +25,9 @@ namespace PurchaseStore.Services
             services.AddScoped<IRepository<Product>, Repository<Product>>();
             services.AddScoped<IRepository<AdminNavtItem>, Repository<AdminNavtItem>>();
             services.AddScoped<IRepository<AdminRole>, Repository<AdminRole>>();
+            services.AddScoped<IRepository<Category>, Repository<Category>>();
+            services.AddScoped<IRepository<SubCategory>, Repository<SubCategory>>();
+
 
 
 
@@ -32,11 +35,15 @@ namespace PurchaseStore.Services
             // Repo
             services.AddScoped<IUserRepo, UserRepo>();
             services.AddScoped<IRoleRepo, RoleRepo>();
+            services.AddScoped<IProductRepo, ProductRepo>();
+
 
 
             // Services
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IRoleService, RoleService>();
+            services.AddScoped<IProductService, ProductService>();
+
 
         }
     }

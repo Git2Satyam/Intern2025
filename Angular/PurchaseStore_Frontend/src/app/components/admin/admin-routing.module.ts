@@ -7,6 +7,7 @@ import { UsersComponent } from './pages/users/users.component';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { RoleGuard } from 'src/app/guards/role.guard';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { ProductComponent } from './pages/product/product.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,12 @@ const routes: Routes = [
       {
         path: 'users',
         component: UsersComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: {role: ['Super Admin', 'Admin']}
+      },
+      {
+        path: 'product',
+        component: ProductComponent,
         canActivate: [AuthGuard, RoleGuard],
         data: {role: ['Super Admin', 'Admin']}
       }

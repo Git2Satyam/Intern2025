@@ -71,7 +71,7 @@ namespace PurchaseStore.API.Controllers
 
                     var secToken = new JwtSecurityToken(_configuration["Jwt:Issuer"],
                         claims: claim,
-                        expires: DateTime.Now.AddMinutes(120),
+                        expires: DateTime.Now.AddMonths(1),
                         signingCredentials: credentials,
                         audience: _configuration["Jwt:Audience"]
                     );
