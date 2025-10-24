@@ -17,9 +17,24 @@ namespace PurchaseStore.Services.Implementation
             _productRepo = productRepo;
         }
 
+        public bool DeleteProduct(int productId)
+        {
+            return _productRepo.DeleteProduct(productId);
+        }
+
+        public List<CategoryModel> GetAllCategories()
+        {
+            return _productRepo.GetAllCategories();
+        }
+
         public List<ProductModel> GetAllProducts()
         {
             return _productRepo.GetAllProducts();
+        }
+
+        public int InsertOrUpdateProduct(ProductModel model)
+        {
+            return _productRepo.InsertOrUpdateProduct(model);
         }
     }
 }

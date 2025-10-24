@@ -10,5 +10,8 @@ namespace PurchaseStore.Services.Interface
     public interface IProductService
     {
         List<ProductModel> GetAllProducts();
+        List<CategoryModel> GetAllCategories();
+        int InsertOrUpdateProduct(ProductModel model);
+       bool DeleteProduct(int productId);
     }
 }

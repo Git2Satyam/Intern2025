@@ -26,7 +26,9 @@ namespace PurchaseStore.Models
         public int? CreatedBy { get; set; }
         public int? ModifiedBy { get; set; }
         public DateTime? ModifiedDate { get; set; }
-        public byte[] ImageData { get; set; }
+        public byte[]? ImageData { get; set; }
         public bool? Enabled { get; set; }
+        public int? SubCatId { get; set; }
+        public int? CategoryId { get; set; }
     }
 }

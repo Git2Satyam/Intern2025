@@ -49,4 +49,22 @@ export class ApiService {
    assignRole(obj: any): Observable<any>{
       return this.http.post<any>(`${this.url}User/AssignRoleToUsers`, obj)
   }
+
+   getProducts(): Observable<any>{
+    return this.http.get<any>(`${this.url}Product/GetAllProducts`);
+  }
+
+   getCategories(): Observable<any>{
+    return this.http.get<any>(`${this.url}Product/GetCategories`)
+  }
+ 
+   saveProduct(obj: any): Observable<any>{
+      return this.http.post<any>(`${this.url}Product/InsertOrUpdateProduct`, obj)
+  }
+
+  deleteProduct(id: any){
+    let param = new HttpParams();
+    param = param.set('productId', id)
+    return this.http.delete<any>(`${this.url}Product/DeleteProduct`, {params: param})
+  }
 }

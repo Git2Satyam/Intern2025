@@ -17,5 +17,6 @@ namespace PurchaseStore.Core.Entities
 
         [ForeignKey("CatId")]
         public virtual Category Category { get; set; }
+        public virtual ICollection<Product>? Products { get; set; }
     }
 }

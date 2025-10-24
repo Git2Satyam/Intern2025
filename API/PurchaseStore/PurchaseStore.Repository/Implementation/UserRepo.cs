@@ -108,7 +108,9 @@ namespace PurchaseStore.Repository.Implementation
         {
             try
             {
-                var item = _context.AdminNavItems.Where(c => c.Enabled == true && c.ParentId == 0).Select(c => new AdminNavItemModel
+                var allItems = _context.AdminNavItems.Where(c => c.Enabled == true).OrderBy(o => o.SortOrder).ToList();
+
+                var item = allItems.Where(c => c.ParentId == 0).Select(c => new AdminNavItemModel
                 {
                     Id = c.Id,
                     Name = c.Name,
@@ -116,7 +118,7 @@ namespace PurchaseStore.Repository.Implementation
                     icon = c.icon,
                     ParentId = c.ParentId,
                     SortOrder = c.SortOrder,
-                    children = _context.AdminNavItems.Where(x => x.Enabled == true && x.ParentId != c.ParentId).Select(child => new AdminNavItemModel
+                    children = allItems.Where(x => x.ParentId != c.ParentId).Select(child => new AdminNavItemModel
                     {
                         Id = child.Id,
                         Name = child.Name,

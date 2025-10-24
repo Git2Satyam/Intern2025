@@ -10,5 +10,9 @@ namespace PurchaseStore.Repository.Interface
     public interface IProductRepo
     {
         List<ProductModel> GetAllProducts();
+        List<CategoryModel> GetAllCategories();
+        int InsertOrUpdateProduct(ProductModel model);
+        bool DeleteProduct(int productId);
+
     }
 }

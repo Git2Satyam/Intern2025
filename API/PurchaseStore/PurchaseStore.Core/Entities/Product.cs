@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,5 +31,8 @@ namespace PurchaseStore.Core.Entities
         public bool? Enabled { get; set; }
 
         public int? SubCatId { get; set; }
+
+        [ForeignKey("SubCatId")]
+        public virtual SubCategory? SubCategory { get; set; }
     }
 }
