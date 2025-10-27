@@ -19,6 +19,7 @@ export class ProductComponent implements OnInit {
   productForm: FormGroup;
   file: File;
   productImage: any;
+  productId: number;
 
   displayedColumns: string[] = ['position', 'name', 'description', 'qty', 'price', 'image', 'action']
   dataSource: MatTableDataSource<any>;
@@ -151,7 +152,7 @@ export class ProductComponent implements OnInit {
   // Image Section
   openImageModal(content: TemplateRef<any>, id: any){
     this.modalService.open(content);
-    console.log(id);
+    this.productId = id;
   }
 
   closeImageModal(){
@@ -169,6 +170,19 @@ export class ProductComponent implements OnInit {
   }
 
   uploadImage(){
-
+     console.log(this.productId, this.file);
+     let form = new FormData();
+     form.append('file', this.file);
+     console.log(form);
+     this.api.saveImage(this.productId, form).subscribe(data => {
+       if(data.Success){
+        this.toastr.success('Image saved successfully', 'Success!');
+        this.closeImageModal();
+        this.getProducts();
+       }
+       else{
+        this.toastr.error('Something went wrong', 'Error'!);
+       }
+     })
   }
 }

@@ -36,6 +36,8 @@ namespace PurchaseStore.Services
             services.AddScoped<IUserRepo, UserRepo>();
             services.AddScoped<IRoleRepo, RoleRepo>();
             services.AddScoped<IProductRepo, ProductRepo>();
+            services.AddScoped<I_ImageRepo, ImageRepo>();
+
 
 
 
@@ -43,6 +45,8 @@ namespace PurchaseStore.Services
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<I_ImageService, ImageService>();
+
 
 
         }

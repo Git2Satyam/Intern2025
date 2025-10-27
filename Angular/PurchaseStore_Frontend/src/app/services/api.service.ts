@@ -67,4 +67,10 @@ export class ApiService {
     param = param.set('productId', id)
     return this.http.delete<any>(`${this.url}Product/DeleteProduct`, {params: param})
   }
+
+   saveImage(productId: any, file: any): Observable<any>{
+    let param = new HttpParams();
+    param = param.set('productId', productId)
+      return this.http.post<any>(`${this.url}Image/SaveImage`,file, {params: param})
+  }
 }
