@@ -1,1 +1,76 @@
-<p>user-header works!</p>
+<div class="row" style="background-color: burlywood;"> 
+    <div class="col-md-1">
+        <img class="brand-img" src="./assets/Logo/Krya_Logo.png" alt="Brand logo" />
+    </div>
+   
+    <div class="col-md-2 pt-1">
+      <span>
+        <button class="location-btn"><mat-icon>place</mat-icon> Update Location</button>
+      </span>
+      <small>Delivering to NewDelhi 11001</small>
+    </div>
+
+    <div class="col-md-4 pt-2">
+        <input type="search" class="searchbox" list="category" name="categoryList" placeholder="Search PurchaseStore.in"/><mat-icon id="maticon">search</mat-icon>
+        <datalist *ngFor="let item of categories">
+           <option [value]="item.value">{{item.viewValue}}</option>
+        </datalist>
+    </div>
+    <div class="col-md-2 btnlogin pt-2">
+     <!-- <button style="border-radius: 5px; padding-bottom: 5px; background-color: bisque;" routerLink="user-login">Login</button>
+     <button style="border-radius: 5px; padding-bottom: 5px; background-color: bisque;" routerLink="user-signup">SignUp</button> -->
+    </div>
+    <div class="col-md-2 pt-2" style="font-size: 20px;">Return & Orders
+      <span style="padding-left: 30px;">
+        <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" style="background: none; border: none;">Lng</button>
+        <div class="dropdown-menu">
+          <div class="radio mb-2">
+            <input class="dropdown-item" type="radio">
+            <label class="radio-label">English</label>
+            <span class="fi fi-in ms-2"></span>
+          </div>
+          <div class="radio mb-2">
+            <input class="dropdown-item" type="radio">
+            <label class="radio-label">Japanese</label>
+            <span class="fi fi-jp ms-2"></span>
+          </div>
+          <div class="radio mb-2">
+            <input class="dropdown-item" type="radio">
+            <label class="radio-label">Mandarin</label>
+            <span class="fi fi-ch ms-2"></span>
+          </div>
+          <div class="radio mb-2">
+            <input class="dropdown-item" type="radio">
+            <label class="radio-label">Korean</label>
+            <span class="fi fi-sk ms-2"></span>
+          </div>
+          <div class="radio mb-2">
+            <input class="dropdown-item" type="radio">
+            <label class="radio-label">Arabic</label>
+            <span class="fi fi-sa ms-2"></span>
+          </div>
+          <div class="radio mb-2">
+            <input class="dropdown-item" type="radio">
+            <label class="radio-label">English-Us</label>
+            <span class="fi fi-us ms-2"></span>
+          </div>
+          </div>
+      </span>
+      
+    </div>
+    <!-- <div class="col-md-1 pt-2">
+       <button class="btnCss position-relative" routerLink="/cart">
+        <fa-icon class="fa-2x" [icon]="carticon"></fa-icon>
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{cartItemCount}}</span>
+       </button>
+       <button class="btnCss ms-2"  (click)="logout()"><mat-icon>power_settings_new</mat-icon></button> 
+    </div> -->
+  </div>
+
+
+
+
+
+
+
+

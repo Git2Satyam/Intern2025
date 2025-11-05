@@ -14,12 +14,12 @@ namespace PurchaseStore.API.Controllers
 
 
         [HttpPost]
-        public IActionResult SaveImage([FromForm] IFormFile imageFile, [FromQuery] int productId)
+        public IActionResult SaveImage([FromForm] IFormFile file, [FromQuery] int productId)
         {
             var response = new ResponseModel();
             try
             {
-                var result = _imageService.SaveImage(imageFile, productId);
+                var result = _imageService.SaveImage(file, productId);
                 if (result)
                 {
                     response.Success = true;
